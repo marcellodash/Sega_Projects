@@ -1,8 +1,5 @@
-# STM32_Projects
-Ultimate-Consoles projects for STM32F103C8
+# Sega Megadrive_Projects
+My Personnal projects for Sega Megadrive
 
-Led : Simple Led blink.
+DF_Audio : UART MP3 Player for Sega Megadrive
 
-Megadrive_HID : USB HID Megadrive cartridge Dumper.
-
-SMS_Dumper : USB HID  Master System cartridge Dumper.

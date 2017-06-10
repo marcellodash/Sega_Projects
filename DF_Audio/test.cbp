@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Final Fantasy" />
+		<Option makefile="D:/ProgMD/SGDK/makefile.gen" />
+		<Option makefile_is_custom="1" />
+		<Option pch_mode="2" />
+		<Option compiler="sega_genesis_compiler" />
+		<MakeCommands>
+			<Build command="$make -f $makefile " />
+			<CompileFile command="$make -f $makefile " />
+			<Clean command="$make -f $makefile clean" />
+			<DistClean command="$make -f $makefile distclean$target" />
+			<AskRebuildNeeded command="$make -q -f $makefile " />
+			<SilentBuild command="$make -s -f $makefile " />
+		</MakeCommands>
+		<Build>
+			<Target title="default">
+				<Option output="out/Final Fantasy" prefix_auto="1" extension_auto="1" />
+				<Option object_output="out/" />
+				<Option type="1" />
+				<Option compiler="sega_genesis_compiler" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+				<MakeCommands>
+					<Build command="$make -f $makefile " />
+					<CompileFile command="$make -f $makefile " />
+					<Clean command="$make -f $makefile clean" />
+					<DistClean command="$make -f $makefile distclean$target" />
+					<AskRebuildNeeded command="$make -q -f $makefile " />
+					<SilentBuild command="$make -s -f $makefile " />
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="Engine.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="level_Intro.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="level_Opening.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="level_Prelude.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="script/Spt_Intro.h" />
+		<Unit filename="script/Spt_Prelude.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<DoxyBlocks>
+				<comment_style block="0" line="0" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
