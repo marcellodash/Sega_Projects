@@ -1,0 +1,144 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2011 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II
+# Version 11.0 Build 157 04/27/2011 SJ Full Version
+# Date created = 09:53:36  August 19, 2017
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		X-flash_Lite_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY MAX3000A
+set_global_assignment -name DEVICE "EPM3128ATC144-10"
+set_global_assignment -name TOP_LEVEL_ENTITY Xflash_Lite
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 11.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "09:53:36  AUGUST 19, 2017"
+set_global_assignment -name LAST_QUARTUS_VERSION 11.0
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR "-1"
+set_global_assignment -name VHDL_FILE "X-flash_Lite.vhd"
+set_global_assignment -name OPTIMIZE_HOLD_TIMING OFF
+set_global_assignment -name FITTER_EFFORT "STANDARD FIT"
+set_global_assignment -name MAX7000_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_location_assignment PIN_5 -to FLASH_DQ[7]
+set_location_assignment PIN_6 -to FLASH_DQ[14]
+set_location_assignment PIN_7 -to FLASH_DQ[6]
+set_location_assignment PIN_8 -to FLASH_DQ[13]
+set_location_assignment PIN_10 -to FLASH_DQ[12]
+set_location_assignment PIN_9 -to FLASH_DQ[5]
+set_location_assignment PIN_11 -to FLASH_DQ[4]
+set_location_assignment PIN_14 -to FLASH_DQ[11]
+set_location_assignment PIN_15 -to FLASH_DQ[3]
+set_location_assignment PIN_16 -to FLASH_DQ[10]
+set_location_assignment PIN_18 -to FLASH_DQ[2]
+set_location_assignment PIN_21 -to FLASH_DQ[9]
+set_location_assignment PIN_22 -to FLASH_DQ[1]
+set_location_assignment PIN_23 -to FLASH_DQ[8]
+set_location_assignment PIN_25 -to FLASH_DQ[0]
+set_location_assignment PIN_27 -to OE_FLASH
+set_location_assignment PIN_28 -to CE_FLASH
+set_location_assignment PIN_29 -to FLASH_ADDR[0]
+set_location_assignment PIN_143 -to FLASH_DQ[15]
+set_location_assignment PIN_30 -to CE_SPI
+set_location_assignment PIN_31 -to SCLK
+set_location_assignment PIN_37 -to MD_ADDR[7]
+set_location_assignment PIN_38 -to MD_ADDR[8]
+set_location_assignment PIN_39 -to MD_ADDR[10]
+set_location_assignment PIN_40 -to MD_ADDR[9]
+set_location_assignment PIN_41 -to MD_ADDR[6]
+set_location_assignment PIN_42 -to MD_ADDR[17]
+set_location_assignment PIN_44 -to MD_ADDR[11]
+set_location_assignment PIN_45 -to MD_ADDR[18]
+set_location_assignment PIN_53 -to MD_ADDR[5]
+set_location_assignment PIN_54 -to MD_ADDR[19]
+set_location_assignment PIN_55 -to MD_ADDR[12]
+set_location_assignment PIN_56 -to MD_ADDR[20]
+set_location_assignment PIN_63 -to MD_ADDR[3]
+set_location_assignment PIN_60 -to MD_ADDR[21]
+set_location_assignment PIN_61 -to MD_ADDR[13]
+set_location_assignment PIN_65 -to MD_ADDR[14]
+set_location_assignment PIN_67 -to MD_ADDR[2]
+set_location_assignment PIN_68 -to MD_ADDR[15]
+set_location_assignment PIN_69 -to MD_ADDR[1]
+set_location_assignment PIN_70 -to MD_OE
+set_location_assignment PIN_71 -to MD_ADDR[16]
+set_location_assignment PIN_72 -to MD_CE
+set_location_assignment PIN_74 -to MD_ADDR[0]
+set_location_assignment PIN_78 -to MD_DQ[7]
+set_location_assignment PIN_79 -to MD_DQ[0]
+set_location_assignment PIN_84 -to MD_DQ[1]
+set_location_assignment PIN_86 -to MD_DQ[13]
+set_location_assignment PIN_87 -to MD_DQ[9]
+set_location_assignment PIN_88 -to MD_DQ[12]
+set_location_assignment PIN_91 -to MD_DQ[5]
+set_location_assignment PIN_92 -to ASEL
+set_location_assignment PIN_93 -to MD_DQ[2]
+set_location_assignment PIN_96 -to SOFT_RST
+set_location_assignment PIN_97 -to MD_DQ[10]
+set_location_assignment PIN_98 -to MD_DQ[4]
+set_location_assignment PIN_99 -to MD_DQ[3]
+set_location_assignment PIN_100 -to Mark3
+set_location_assignment PIN_101 -to MD_DQ[11]
+set_location_assignment PIN_102 -to TIMEE
+set_location_assignment PIN_4 -to TDI
+set_location_assignment PIN_20 -to TMS
+set_location_assignment PIN_104 -to TDO
+set_location_assignment PIN_89 -to TCK
+set_location_assignment PIN_106 -to FLASH_ADDR[2]
+set_location_assignment PIN_107 -to FLASH_ADDR[1]
+set_location_assignment PIN_109 -to FLASH_ADDR[3]
+set_location_assignment PIN_110 -to FLASH_ADDR[4]
+set_location_assignment PIN_111 -to FLASH_ADDR[5]
+set_location_assignment PIN_112 -to FLASH_ADDR[6]
+set_location_assignment PIN_113 -to FLASH_ADDR[7]
+set_location_assignment PIN_116 -to FLASH_ADDR[17]
+set_location_assignment PIN_117 -to FLASH_ADDR[18]
+set_location_assignment PIN_118 -to FLASH_ADDR[21]
+set_location_assignment PIN_119 -to FLASH_WE
+set_location_assignment PIN_125 -to MISO
+set_location_assignment PIN_131 -to FLASH_ADDR[20]
+set_location_assignment PIN_132 -to FLASH_ADDR[19]
+set_location_assignment PIN_133 -to FLASH_ADDR[8]
+set_location_assignment PIN_134 -to FLASH_ADDR[9]
+set_location_assignment PIN_136 -to FLASH_ADDR[10]
+set_location_assignment PIN_137 -to FLASH_ADDR[11]
+set_location_assignment PIN_138 -to FLASH_ADDR[12]
+set_location_assignment PIN_139 -to FLASH_ADDR[13]
+set_location_assignment PIN_140 -to FLASH_ADDR[14]
+set_location_assignment PIN_141 -to FLASH_ADDR[15]
+set_location_assignment PIN_142 -to FLASH_ADDR[16]
+set_location_assignment PIN_127 -to LWR
+set_location_assignment PIN_81 -to MD_DQ[15]
+set_location_assignment PIN_83 -to MD_DQ[14]
+set_location_assignment PIN_80 -to MD_DQ[8]
+set_location_assignment PIN_82 -to MD_DQ[6]
+set_location_assignment PIN_62 -to MD_ADDR[4]
+set_location_assignment PIN_32 -to TX
+set_global_assignment -name MISC_FILE "C:/Users/I3-2100/Documents/CPLD/EPM3128/X-flash_Lite/X-flash_Lite.dpf"

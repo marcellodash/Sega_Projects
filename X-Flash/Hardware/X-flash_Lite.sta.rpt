@@ -1,0 +1,486 @@
+TimeQuest Timing Analyzer report for X-flash_Lite
+Sat Nov 11 19:31:42 2017
+Quartus II Version 11.0 Build 157 04/27/2011 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. TimeQuest Timing Analyzer Summary
+  3. Parallel Compilation
+  4. Clocks
+  5. Fmax Summary
+  6. Setup Summary
+  7. Hold Summary
+  8. Recovery Summary
+  9. Removal Summary
+ 10. Minimum Pulse Width Summary
+ 11. Propagation Delay
+ 12. Minimum Propagation Delay
+ 13. Clock Transfers
+ 14. Report TCCS
+ 15. Report RSKM
+ 16. Unconstrained Paths
+ 17. TimeQuest Timing Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2011 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++------------------------------------------------------------------------+
+; TimeQuest Timing Analyzer Summary                                      ;
++--------------------+---------------------------------------------------+
+; Quartus II Version ; Version 11.0 Build 157 04/27/2011 SJ Full Version ;
+; Revision Name      ; X-flash_Lite                                      ;
+; Device Family      ; MAX3000A                                          ;
+; Device Name        ; EPM3128ATC144-10                                  ;
+; Timing Models      ; Final                                             ;
+; Delay Model        ; Slow Model                                        ;
+; Rise/Fall Delays   ; Unavailable                                       ;
++--------------------+---------------------------------------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 2           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     1 processor            ; 100.0%      ;
+;     2 processors           ;   0.0%      ;
++----------------------------+-------------+
+
+
+----------
+; Clocks ;
+----------
+No clocks to report.
+
+
+----------------
+; Fmax Summary ;
+----------------
+No paths to report.
+
+
+-----------------
+; Setup Summary ;
+-----------------
+No paths to report.
+
+
+----------------
+; Hold Summary ;
+----------------
+No paths to report.
+
+
+--------------------
+; Recovery Summary ;
+--------------------
+No paths to report.
+
+
+-------------------
+; Removal Summary ;
+-------------------
+No paths to report.
+
+
+-------------------------------
+; Minimum Pulse Width Summary ;
+-------------------------------
+No paths to report.
+
+
++-------------------------------------------------------------------+
+; Propagation Delay                                                 ;
++--------------+----------------+--------+--------+--------+--------+
+; Input Port   ; Output Port    ; RR     ; RF     ; FR     ; FF     ;
++--------------+----------------+--------+--------+--------+--------+
+; ASEL         ; FLASH_DQ[0]    ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[1]    ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[2]    ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[3]    ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[4]    ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[5]    ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[6]    ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[7]    ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[8]    ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[9]    ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[10]   ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[11]   ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[12]   ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[13]   ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[14]   ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[15]   ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_WE       ;        ; 10.000 ; 10.000 ;        ;
+; FLASH_DQ[0]  ; MD_DQ[0]       ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[1]  ; MD_DQ[1]       ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[2]  ; MD_DQ[2]       ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[3]  ; MD_DQ[3]       ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[4]  ; MD_DQ[4]       ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[5]  ; MD_DQ[5]       ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[6]  ; MD_DQ[6]       ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[7]  ; MD_DQ[7]       ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[8]  ; MD_DQ[8]       ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[9]  ; MD_DQ[9]       ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[10] ; MD_DQ[10]      ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[11] ; MD_DQ[11]      ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[12] ; MD_DQ[12]      ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[13] ; MD_DQ[13]      ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[14] ; MD_DQ[14]      ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[15] ; MD_DQ[15]      ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[0]   ; FLASH_ADDR[0]  ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[1]   ; FLASH_ADDR[1]  ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[2]   ; FLASH_ADDR[2]  ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[3]   ; FLASH_ADDR[3]  ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[4]   ; FLASH_ADDR[4]  ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[5]   ; FLASH_ADDR[5]  ; 10.100 ;        ;        ; 10.100 ;
+; MD_ADDR[5]   ; TX             ;        ; 10.100 ; 10.100 ;        ;
+; MD_ADDR[6]   ; FLASH_ADDR[6]  ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[7]   ; FLASH_ADDR[7]  ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[8]   ; FLASH_ADDR[8]  ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[9]   ; FLASH_ADDR[9]  ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[10]  ; FLASH_ADDR[10] ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[11]  ; FLASH_ADDR[11] ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[12]  ; FLASH_ADDR[12] ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[13]  ; FLASH_ADDR[13] ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[14]  ; FLASH_ADDR[14] ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[15]  ; FLASH_ADDR[15] ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[16]  ; FLASH_ADDR[16] ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[17]  ; FLASH_ADDR[17] ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[18]  ; FLASH_ADDR[18] ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[19]  ; FLASH_ADDR[19] ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[20]  ; FLASH_ADDR[20] ; 10.000 ;        ;        ; 10.000 ;
+; MD_CE        ; CE_FLASH       ; 10.200 ;        ;        ; 10.200 ;
+; MD_CE        ; FLASH_DQ[0]    ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[1]    ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[2]    ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[3]    ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[4]    ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[5]    ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[6]    ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[7]    ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[8]    ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[9]    ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[10]   ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[11]   ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[12]   ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[13]   ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[14]   ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[15]   ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_WE       ;        ; 10.200 ; 10.200 ;        ;
+; MD_CE        ; MD_DQ[0]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[1]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[2]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[3]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[4]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[5]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[6]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[7]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[8]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[9]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[10]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[11]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[12]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[13]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[14]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[15]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_DQ[0]     ; FLASH_DQ[0]    ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[0]     ; TX             ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[1]     ; FLASH_DQ[1]    ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[2]     ; FLASH_DQ[2]    ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[3]     ; FLASH_DQ[3]    ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[4]     ; FLASH_DQ[4]    ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[5]     ; FLASH_DQ[5]    ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[6]     ; FLASH_DQ[6]    ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[7]     ; FLASH_DQ[7]    ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[8]     ; FLASH_DQ[8]    ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[9]     ; FLASH_DQ[9]    ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[10]    ; FLASH_DQ[10]   ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[11]    ; FLASH_DQ[11]   ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[12]    ; FLASH_DQ[12]   ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[13]    ; FLASH_DQ[13]   ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[14]    ; FLASH_DQ[14]   ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[15]    ; FLASH_DQ[15]   ; 10.000 ;        ;        ; 10.000 ;
+; MD_OE        ; FLASH_DQ[0]    ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[1]    ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[2]    ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[3]    ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[4]    ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[5]    ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[6]    ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[7]    ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[8]    ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[9]    ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[10]   ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[11]   ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[12]   ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[13]   ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[14]   ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[15]   ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_WE       ; 10.200 ;        ;        ; 10.200 ;
+; MD_OE        ; MD_DQ[0]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[1]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[2]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[3]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[4]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[5]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[6]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[7]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[8]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[9]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[10]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[11]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[12]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[13]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[14]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[15]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; OE_FLASH       ; 10.200 ;        ;        ; 10.200 ;
+; TIMEE        ; TX             ; 10.000 ; 10.000 ; 10.000 ; 10.000 ;
++--------------+----------------+--------+--------+--------+--------+
+
+
++-------------------------------------------------------------------+
+; Minimum Propagation Delay                                         ;
++--------------+----------------+--------+--------+--------+--------+
+; Input Port   ; Output Port    ; RR     ; RF     ; FR     ; FF     ;
++--------------+----------------+--------+--------+--------+--------+
+; ASEL         ; FLASH_DQ[0]    ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[1]    ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[2]    ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[3]    ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[4]    ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[5]    ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[6]    ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[7]    ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[8]    ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[9]    ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[10]   ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[11]   ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[12]   ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[13]   ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[14]   ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_DQ[15]   ;        ; 16.000 ; 16.000 ;        ;
+; ASEL         ; FLASH_WE       ;        ; 10.000 ; 10.000 ;        ;
+; FLASH_DQ[0]  ; MD_DQ[0]       ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[1]  ; MD_DQ[1]       ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[2]  ; MD_DQ[2]       ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[3]  ; MD_DQ[3]       ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[4]  ; MD_DQ[4]       ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[5]  ; MD_DQ[5]       ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[6]  ; MD_DQ[6]       ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[7]  ; MD_DQ[7]       ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[8]  ; MD_DQ[8]       ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[9]  ; MD_DQ[9]       ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[10] ; MD_DQ[10]      ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[11] ; MD_DQ[11]      ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[12] ; MD_DQ[12]      ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[13] ; MD_DQ[13]      ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[14] ; MD_DQ[14]      ; 10.000 ;        ;        ; 10.000 ;
+; FLASH_DQ[15] ; MD_DQ[15]      ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[0]   ; FLASH_ADDR[0]  ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[1]   ; FLASH_ADDR[1]  ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[2]   ; FLASH_ADDR[2]  ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[3]   ; FLASH_ADDR[3]  ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[4]   ; FLASH_ADDR[4]  ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[5]   ; FLASH_ADDR[5]  ; 10.100 ;        ;        ; 10.100 ;
+; MD_ADDR[5]   ; TX             ;        ; 10.100 ; 10.100 ;        ;
+; MD_ADDR[6]   ; FLASH_ADDR[6]  ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[7]   ; FLASH_ADDR[7]  ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[8]   ; FLASH_ADDR[8]  ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[9]   ; FLASH_ADDR[9]  ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[10]  ; FLASH_ADDR[10] ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[11]  ; FLASH_ADDR[11] ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[12]  ; FLASH_ADDR[12] ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[13]  ; FLASH_ADDR[13] ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[14]  ; FLASH_ADDR[14] ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[15]  ; FLASH_ADDR[15] ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[16]  ; FLASH_ADDR[16] ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[17]  ; FLASH_ADDR[17] ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[18]  ; FLASH_ADDR[18] ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[19]  ; FLASH_ADDR[19] ; 10.000 ;        ;        ; 10.000 ;
+; MD_ADDR[20]  ; FLASH_ADDR[20] ; 10.000 ;        ;        ; 10.000 ;
+; MD_CE        ; CE_FLASH       ; 10.200 ;        ;        ; 10.200 ;
+; MD_CE        ; FLASH_DQ[0]    ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[1]    ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[2]    ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[3]    ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[4]    ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[5]    ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[6]    ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[7]    ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[8]    ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[9]    ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[10]   ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[11]   ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[12]   ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[13]   ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[14]   ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_DQ[15]   ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; FLASH_WE       ;        ; 10.200 ; 10.200 ;        ;
+; MD_CE        ; MD_DQ[0]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[1]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[2]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[3]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[4]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[5]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[6]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[7]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[8]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[9]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[10]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[11]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[12]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[13]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[14]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_CE        ; MD_DQ[15]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_DQ[0]     ; FLASH_DQ[0]    ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[0]     ; TX             ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[1]     ; FLASH_DQ[1]    ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[2]     ; FLASH_DQ[2]    ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[3]     ; FLASH_DQ[3]    ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[4]     ; FLASH_DQ[4]    ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[5]     ; FLASH_DQ[5]    ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[6]     ; FLASH_DQ[6]    ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[7]     ; FLASH_DQ[7]    ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[8]     ; FLASH_DQ[8]    ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[9]     ; FLASH_DQ[9]    ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[10]    ; FLASH_DQ[10]   ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[11]    ; FLASH_DQ[11]   ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[12]    ; FLASH_DQ[12]   ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[13]    ; FLASH_DQ[13]   ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[14]    ; FLASH_DQ[14]   ; 10.000 ;        ;        ; 10.000 ;
+; MD_DQ[15]    ; FLASH_DQ[15]   ; 10.000 ;        ;        ; 10.000 ;
+; MD_OE        ; FLASH_DQ[0]    ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[1]    ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[2]    ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[3]    ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[4]    ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[5]    ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[6]    ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[7]    ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[8]    ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[9]    ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[10]   ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[11]   ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[12]   ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[13]   ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[14]   ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_DQ[15]   ; 16.200 ;        ;        ; 16.200 ;
+; MD_OE        ; FLASH_WE       ; 10.200 ;        ;        ; 10.200 ;
+; MD_OE        ; MD_DQ[0]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[1]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[2]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[3]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[4]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[5]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[6]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[7]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[8]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[9]       ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[10]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[11]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[12]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[13]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[14]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; MD_DQ[15]      ;        ; 16.200 ; 16.200 ;        ;
+; MD_OE        ; OE_FLASH       ; 10.200 ;        ;        ; 10.200 ;
+; TIMEE        ; TX             ; 10.000 ; 10.000 ; 10.000 ; 10.000 ;
++--------------+----------------+--------+--------+--------+--------+
+
+
+-------------------
+; Clock Transfers ;
+-------------------
+Nothing to report.
+
+
+---------------
+; Report TCCS ;
+---------------
+No dedicated SERDES Transmitter circuitry present in device or used in design
+
+
+---------------
+; Report RSKM ;
+---------------
+No dedicated SERDES Receiver circuitry present in device or used in design
+
+
++------------------------------------------------+
+; Unconstrained Paths                            ;
++---------------------------------+-------+------+
+; Property                        ; Setup ; Hold ;
++---------------------------------+-------+------+
+; Illegal Clocks                  ; 0     ; 0    ;
+; Unconstrained Clocks            ; 0     ; 0    ;
+; Unconstrained Input Ports       ; 57    ; 57   ;
+; Unconstrained Input Port Paths  ; 141   ; 141  ;
+; Unconstrained Output Ports      ; 57    ; 57   ;
+; Unconstrained Output Port Paths ; 141   ; 141  ;
++---------------------------------+-------+------+
+
+
++------------------------------------+
+; TimeQuest Timing Analyzer Messages ;
++------------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II TimeQuest Timing Analyzer
+    Info: Version 11.0 Build 157 04/27/2011 SJ Full Version
+    Info: Processing started: Sat Nov 11 19:31:41 2017
+Info: Command: quartus_sta X-flash_Lite -c X-flash_Lite
+Info: qsta_default_script.tcl version: #1
+Info: Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info: Started post-fitting delay annotation
+Info: Delay annotation completed successfully
+Warning: Timing Analysis does not support the analysis of latches as synchronous elements for the currently selected device family
+Critical Warning: Synopsys Design Constraints File file not found: 'X-flash_Lite.sdc'. A Synopsys Design Constraints File is required by the TimeQuest Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
+Info: No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
+Info: The command derive_clocks did not find any clocks to derive.  No clocks were created or changed.
+Warning: Found combinational loop of 2 nodes
+    Warning: Node "GPIO_MOSI~18|[0]"
+    Warning: Node "GPIO_MOSI~18|dataout"
+Warning: No clocks defined in design.
+Info: No clocks to report
+Info: No fmax paths to report
+Info: No Setup paths to report
+Info: No Hold paths to report
+Info: No Recovery paths to report
+Info: No Removal paths to report
+Info: No Minimum Pulse Width paths to report
+Info: The selected device family is not supported by the report_metastability command.
+Info: Design is not fully constrained for setup requirements
+Info: Design is not fully constrained for hold requirements
+Info: Quartus II TimeQuest Timing Analyzer was successful. 0 errors, 6 warnings
+    Info: Peak virtual memory: 268 megabytes
+    Info: Processing ended: Sat Nov 11 19:31:42 2017
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
+
+

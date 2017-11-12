@@ -1,0 +1,18 @@
+-=X-flash Pinout List -=
+
+Cartridge Slot : 56
+Memory : 43
+FRAM : 2
+EEPROM/Extra  : 6 (25AA512)
+EEPROM I²C 24C32
+
+IO : 108
+
+CPLD : EPM570T144C5N
+Condensateur 
+
+Mémoire TSOP56 : 32Mbit - 1 Gbit
+Mémoire TSOP48 : 8 Mbit - 64Mbit
+
+SRAM_CE / RX
+SRAM_WE / SCLK

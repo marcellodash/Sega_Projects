@@ -1,0 +1,12 @@
+Bill of Material for X-flash.Sch
+On 2016/10/09 at 14:50:40
+
+ Comment             Pattern     Quantity  Components
+------------------------------------------------------------------------------                                               
+ 10uF                25V100UF         2    C15,C17                      Capacitor Tantalum 10µF            
+ 104                                  1    C8                           Capacitor            
+ 104                 0805             8    C1, C2, C3, C4, C5, C6, C7   Capacitor SMD                         
+ EPM570              EPM570           1    U2                           CPLD EPM570                                                      
+ HEADER 5X2          IDC10            1    CON1                         JTAG Connector                                                   
+ LM1117-3.3          LM1117           1    U4                           Voltage Regulator 5V to 3.3V                    
+          

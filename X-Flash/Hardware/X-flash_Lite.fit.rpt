@@ -1,0 +1,732 @@
+Fitter report for X-flash_Lite
+Sat Nov 11 19:31:40 2017
+Quartus II Version 11.0 Build 157 04/27/2011 SJ Full Version
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Fitter Summary
+  3. Fitter Settings
+  4. Parallel Compilation
+  5. Pin-Out File
+  6. Fitter Resource Usage Summary
+  7. Input Pins
+  8. Output Pins
+  9. Bidir Pins
+ 10. All Package Pins
+ 11. I/O Standard
+ 12. Dedicated Inputs I/O
+ 13. Output Pin Default Load For Reported TCO
+ 14. Fitter Resource Utilization by Entity
+ 15. Non-Global High Fan-Out Signals
+ 16. Interconnect Usage Summary
+ 17. LAB External Interconnect
+ 18. LAB Macrocells
+ 19. Logic Cell Interconnection
+ 20. Fitter Device Options
+ 21. Fitter Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2011 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------+
+; Fitter Summary                                                    ;
++-----------------------+-------------------------------------------+
+; Fitter Status         ; Successful - Sat Nov 11 19:31:40 2017     ;
+; Quartus II Version    ; 11.0 Build 157 04/27/2011 SJ Full Version ;
+; Revision Name         ; X-flash_Lite                              ;
+; Top-level Entity Name ; Xflash_Lite                               ;
+; Family                ; MAX3000A                                  ;
+; Device                ; EPM3128ATC144-10                          ;
+; Timing Models         ; Final                                     ;
+; Total macrocells      ; 63 / 128 ( 49 % )                         ;
+; Total pins            ; 94 / 96 ( 98 % )                          ;
++-----------------------+-------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------+
+; Fitter Settings                                                                                               ;
++----------------------------------------------------------------------------+------------------+---------------+
+; Option                                                                     ; Setting          ; Default Value ;
++----------------------------------------------------------------------------+------------------+---------------+
+; Device                                                                     ; EPM3128ATC144-10 ;               ;
+; Fitter Effort                                                              ; Standard Fit     ; Auto Fit      ;
+; Use smart compilation                                                      ; Off              ; Off           ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On               ; On            ;
+; Enable compact report table                                                ; Off              ; Off           ;
+; Use TimeQuest Timing Analyzer                                              ; Off              ; Off           ;
+; Optimize Timing for ECOs                                                   ; Off              ; Off           ;
+; Regenerate full fit report during ECO compiles                             ; Off              ; Off           ;
+; Optimize IOC Register Placement for Timing                                 ; Normal           ; Normal        ;
+; Limit to One Fitting Attempt                                               ; Off              ; Off           ;
+; Fitter Initial Placement Seed                                              ; 1                ; 1             ;
+; Slow Slew Rate                                                             ; Off              ; Off           ;
+; Force Fitter to Avoid Periphery Placement Warnings                         ; Off              ; Off           ;
++----------------------------------------------------------------------------+------------------+---------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 2           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     1 processor            ; 100.0%      ;
+;     2 processors           ;   0.0%      ;
++----------------------------+-------------+
+
+
++--------------+
+; Pin-Out File ;
++--------------+
+The pin-out file can be found in C:/Users/I3-2100/Documents/CPLD/EPM3128/X-flash_Lite/X-flash_Lite.pin.
+
+
++-------------------------------------------------------+
+; Fitter Resource Usage Summary                         ;
++-----------------------------------+-------------------+
+; Resource                          ; Usage             ;
++-----------------------------------+-------------------+
+; Logic cells                       ; 63 / 128 ( 49 % ) ;
+; Registers                         ; 0 / 128 ( 0 % )   ;
+; Number of pterms used             ; 61                ;
+; User inserted logic elements      ; 0                 ;
+; I/O pins                          ; 94 / 96 ( 98 % )  ;
+;     -- Clock pins                 ; 1 / 2 ( 50 % )    ;
+;     -- Dedicated input pins       ; 1 / 2 ( 50 % )    ;
+; Global signals                    ; 0                 ;
+; Shareable expanders               ; 0 / 128 ( 0 % )   ;
+; Parallel expanders                ; 0 / 120 ( 0 % )   ;
+; Cells using turbo bit             ; 63 / 128 ( 49 % ) ;
+; Maximum fan-out node              ; FLASH_WE~2        ;
+; Maximum fan-out                   ; 17                ;
+; Highest non-global fan-out signal ; FLASH_WE~2        ;
+; Highest non-global fan-out        ; 17                ;
+; Total fan-out                     ; 158               ;
+; Average fan-out                   ; 1.01              ;
++-----------------------------------+-------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------+
+; Input Pins                                                                                                                       ;
++-------------+-------+----------+-----+-----------------------+--------------------+--------+--------------+----------------------+
+; Name        ; Pin # ; I/O Bank ; LAB ; Combinational Fan-Out ; Registered Fan-Out ; Global ; I/O Standard ; Location assigned by ;
++-------------+-------+----------+-----+-----------------------+--------------------+--------+--------------+----------------------+
+; ASEL        ; 92    ; --       ; 7   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; LWR         ; 127   ; --       ; --  ; 0                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[0]  ; 74    ; --       ; 5   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[10] ; 39    ; --       ; 4   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[11] ; 44    ; --       ; 4   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[12] ; 55    ; --       ; 4   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[13] ; 61    ; --       ; 5   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[14] ; 65    ; --       ; 5   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[15] ; 68    ; --       ; 5   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[16] ; 71    ; --       ; 5   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[17] ; 42    ; --       ; 4   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[18] ; 45    ; --       ; 4   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[19] ; 54    ; --       ; 4   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[1]  ; 69    ; --       ; 5   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[20] ; 56    ; --       ; 4   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[21] ; 60    ; --       ; 5   ; 0                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[2]  ; 67    ; --       ; 5   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[3]  ; 63    ; --       ; 5   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[4]  ; 62    ; --       ; 5   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[5]  ; 53    ; --       ; 4   ; 2                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[6]  ; 41    ; --       ; 4   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[7]  ; 37    ; --       ; 4   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[8]  ; 38    ; --       ; 4   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_ADDR[9]  ; 40    ; --       ; 4   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_CE       ; 72    ; --       ; 5   ; 3                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MD_OE       ; 70    ; --       ; 5   ; 3                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; MISO        ; 125   ; --       ; --  ; 0                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
+; TIMEE       ; 102   ; --       ; 7   ; 1                     ; 0                  ; no     ; 3.3-V LVTTL  ; User                 ;
++-------------+-------+----------+-----+-----------------------+--------------------+--------+--------------+----------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Output Pins                                                                                                                                                                                        ;
++----------------+-------+----------+-----+-----------------+----------------+------------+---------------+--------------+----------------------+-------+----------------------+---------------------+
+; Name           ; Pin # ; I/O Bank ; LAB ; Output Register ; Slow Slew Rate ; Open Drain ; TRI Primitive ; I/O Standard ; Location assigned by ; Load  ; Output Enable Source ; Output Enable Group ;
++----------------+-------+----------+-----+-----------------+----------------+------------+---------------+--------------+----------------------+-------+----------------------+---------------------+
+; CE_FLASH       ; 28    ; --       ; 3   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; CE_SPI         ; 30    ; --       ; 3   ; no              ; no             ; yes        ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[0]  ; 29    ; --       ; 3   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[10] ; 136   ; --       ; 1   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[11] ; 137   ; --       ; 1   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[12] ; 138   ; --       ; 1   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[13] ; 139   ; --       ; 1   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[14] ; 140   ; --       ; 1   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[15] ; 141   ; --       ; 1   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[16] ; 142   ; --       ; 1   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[17] ; 116   ; --       ; 8   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[18] ; 117   ; --       ; 8   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[19] ; 132   ; --       ; 1   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[1]  ; 107   ; --       ; 8   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[20] ; 131   ; --       ; 1   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[21] ; 118   ; --       ; 8   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[2]  ; 106   ; --       ; 8   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[3]  ; 109   ; --       ; 8   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[4]  ; 110   ; --       ; 8   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[5]  ; 111   ; --       ; 8   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[6]  ; 112   ; --       ; 8   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[7]  ; 113   ; --       ; 8   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[8]  ; 133   ; --       ; 1   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_ADDR[9]  ; 134   ; --       ; 1   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; FLASH_WE       ; 119   ; --       ; 8   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; Mark3          ; 100   ; --       ; 7   ; no              ; no             ; yes        ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; OE_FLASH       ; 27    ; --       ; 3   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; SCLK           ; 31    ; --       ; 3   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; SOFT_RST       ; 96    ; --       ; 7   ; no              ; no             ; yes        ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
+; TX             ; 32    ; --       ; 3   ; no              ; no             ; no         ; no            ; 3.3-V LVTTL  ; User                 ; 10 pF ; -                    ; -                   ;
++----------------+-------+----------+-----+-----------------+----------------+------------+---------------+--------------+----------------------+-------+----------------------+---------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Bidir Pins                                                                                                                                                                                                                              ;
++--------------+-------+----------+-----+-----------------------+--------------------+--------+-----------------+----------------+------------+--------------+----------------------+-------+-----------------------+---------------------+
+; Name         ; Pin # ; I/O Bank ; LAB ; Combinational Fan-Out ; Registered Fan-Out ; Global ; Output Register ; Slow Slew Rate ; Open Drain ; I/O Standard ; Location assigned by ; Load  ; Output Enable Source  ; Output Enable Group ;
++--------------+-------+----------+-----+-----------------------+--------------------+--------+-----------------+----------------+------------+--------------+----------------------+-------+-----------------------+---------------------+
+; FLASH_DQ[0]  ; 25    ; --       ; 3   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; FLASH_WE~2 (inverted) ; -                   ;
+; FLASH_DQ[10] ; 16    ; --       ; 2   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; FLASH_WE~2 (inverted) ; -                   ;
+; FLASH_DQ[11] ; 14    ; --       ; 2   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; FLASH_WE~2 (inverted) ; -                   ;
+; FLASH_DQ[12] ; 10    ; --       ; 2   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; FLASH_WE~2 (inverted) ; -                   ;
+; FLASH_DQ[13] ; 8     ; --       ; 2   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; FLASH_WE~2 (inverted) ; -                   ;
+; FLASH_DQ[14] ; 6     ; --       ; 2   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; FLASH_WE~2 (inverted) ; -                   ;
+; FLASH_DQ[15] ; 143   ; --       ; 1   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; FLASH_WE~2 (inverted) ; -                   ;
+; FLASH_DQ[1]  ; 22    ; --       ; 3   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; FLASH_WE~2 (inverted) ; -                   ;
+; FLASH_DQ[2]  ; 18    ; --       ; 2   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; FLASH_WE~2 (inverted) ; -                   ;
+; FLASH_DQ[3]  ; 15    ; --       ; 2   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; FLASH_WE~2 (inverted) ; -                   ;
+; FLASH_DQ[4]  ; 11    ; --       ; 2   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; FLASH_WE~2 (inverted) ; -                   ;
+; FLASH_DQ[5]  ; 9     ; --       ; 2   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; FLASH_WE~2 (inverted) ; -                   ;
+; FLASH_DQ[6]  ; 7     ; --       ; 2   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; FLASH_WE~2 (inverted) ; -                   ;
+; FLASH_DQ[7]  ; 5     ; --       ; 2   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; FLASH_WE~2 (inverted) ; -                   ;
+; FLASH_DQ[8]  ; 23    ; --       ; 3   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; FLASH_WE~2 (inverted) ; -                   ;
+; FLASH_DQ[9]  ; 21    ; --       ; 3   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; FLASH_WE~2 (inverted) ; -                   ;
+; MD_DQ[0]     ; 79    ; --       ; 6   ; 2                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; MD_DQ~49              ; -                   ;
+; MD_DQ[10]    ; 97    ; --       ; 7   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; MD_DQ~49              ; -                   ;
+; MD_DQ[11]    ; 101   ; --       ; 7   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; MD_DQ~49              ; -                   ;
+; MD_DQ[12]    ; 88    ; --       ; 6   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; MD_DQ~49              ; -                   ;
+; MD_DQ[13]    ; 86    ; --       ; 6   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; MD_DQ~49              ; -                   ;
+; MD_DQ[14]    ; 83    ; --       ; 6   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; MD_DQ~49              ; -                   ;
+; MD_DQ[15]    ; 81    ; --       ; 6   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; MD_DQ~49              ; -                   ;
+; MD_DQ[1]     ; 84    ; --       ; 6   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; MD_DQ~49              ; -                   ;
+; MD_DQ[2]     ; 93    ; --       ; 7   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; MD_DQ~49              ; -                   ;
+; MD_DQ[3]     ; 99    ; --       ; 7   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; MD_DQ~49              ; -                   ;
+; MD_DQ[4]     ; 98    ; --       ; 7   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; MD_DQ~49              ; -                   ;
+; MD_DQ[5]     ; 91    ; --       ; 7   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; MD_DQ~49              ; -                   ;
+; MD_DQ[6]     ; 82    ; --       ; 6   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; MD_DQ~49              ; -                   ;
+; MD_DQ[7]     ; 78    ; --       ; 6   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; MD_DQ~49              ; -                   ;
+; MD_DQ[8]     ; 80    ; --       ; 6   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; MD_DQ~49              ; -                   ;
+; MD_DQ[9]     ; 87    ; --       ; 6   ; 1                     ; 0                  ; no     ; no              ; no             ; no         ; 3.3-V LVTTL  ; User                 ; 10 pF ; MD_DQ~49              ; -                   ;
++--------------+-------+----------+-----+-----------------------+--------------------+--------+-----------------+----------------+------------+--------------+----------------------+-------+-----------------------+---------------------+
+
+
++-------------------------------------------------------------------------------------------------------+
+; All Package Pins                                                                                      ;
++----------+------------+----------+----------------+--------+--------------+---------+-----------------+
+; Location ; Pad Number ; I/O Bank ; Pin Name/Usage ; Dir.   ; I/O Standard ; Voltage ; User Assignment ;
++----------+------------+----------+----------------+--------+--------------+---------+-----------------+
+; 1        ;            ;          ; NC             ;        ;              ;         ;                 ;
+; 2        ;            ;          ; NC             ;        ;              ;         ;                 ;
+; 3        ; 160        ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 4        ; 28         ; --       ; TDI            ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 5        ; 29         ; --       ; FLASH_DQ[7]    ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 6        ; 30         ; --       ; FLASH_DQ[14]   ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 7        ; 31         ; --       ; FLASH_DQ[6]    ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 8        ; 32         ; --       ; FLASH_DQ[13]   ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 9        ; 33         ; --       ; FLASH_DQ[5]    ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 10       ; 34         ; --       ; FLASH_DQ[12]   ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 11       ; 35         ; --       ; FLASH_DQ[4]    ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 12       ;            ;          ; NC             ;        ;              ;         ;                 ;
+; 13       ; 36         ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 14       ; 37         ; --       ; FLASH_DQ[11]   ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 15       ; 38         ; --       ; FLASH_DQ[3]    ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 16       ; 39         ; --       ; FLASH_DQ[10]   ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 17       ; 161        ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 18       ; 40         ; --       ; FLASH_DQ[2]    ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 19       ;            ;          ; NC             ;        ;              ;         ;                 ;
+; 20       ; 41         ; --       ; TMS            ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 21       ; 42         ; --       ; FLASH_DQ[9]    ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 22       ; 43         ; --       ; FLASH_DQ[1]    ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 23       ; 44         ; --       ; FLASH_DQ[8]    ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 24       ; 45         ; --       ; VCCIO          ; power  ;              ; 3.3V    ;                 ;
+; 25       ; 46         ; --       ; FLASH_DQ[0]    ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 26       ; 47         ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 27       ; 48         ; --       ; OE_FLASH       ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 28       ; 49         ; --       ; CE_FLASH       ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 29       ; 50         ; --       ; FLASH_ADDR[0]  ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 30       ; 51         ; --       ; CE_SPI         ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 31       ; 52         ; --       ; SCLK           ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 32       ; 60         ; --       ; TX             ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 33       ; 61         ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 34       ;            ;          ; NC             ;        ;              ;         ;                 ;
+; 35       ;            ;          ; NC             ;        ;              ;         ;                 ;
+; 36       ;            ;          ; NC             ;        ;              ;         ;                 ;
+; 37       ; 62         ; --       ; MD_ADDR[7]     ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 38       ; 67         ; --       ; MD_ADDR[8]     ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 39       ; 68         ; --       ; MD_ADDR[10]    ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 40       ; 69         ; --       ; MD_ADDR[9]     ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 41       ; 70         ; --       ; MD_ADDR[6]     ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 42       ; 71         ; --       ; MD_ADDR[17]    ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 43       ;            ;          ; NC             ;        ;              ;         ;                 ;
+; 44       ; 72         ; --       ; MD_ADDR[11]    ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 45       ; 73         ; --       ; MD_ADDR[18]    ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 46       ;            ;          ; NC             ;        ;              ;         ;                 ;
+; 47       ;            ;          ; NC             ;        ;              ;         ;                 ;
+; 48       ;            ;          ; NC             ;        ;              ;         ;                 ;
+; 49       ;            ;          ; NC             ;        ;              ;         ;                 ;
+; 50       ; 74         ; --       ; VCCIO          ; power  ;              ; 3.3V    ;                 ;
+; 51       ; 162        ; --       ; VCCINT         ; power  ;              ; 3.3V    ;                 ;
+; 52       ; 163        ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 53       ; 75         ; --       ; MD_ADDR[5]     ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 54       ; 76         ; --       ; MD_ADDR[19]    ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 55       ; 77         ; --       ; MD_ADDR[12]    ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 56       ; 78         ; --       ; MD_ADDR[20]    ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 57       ; 79         ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 58       ; 80         ; --       ; VCCINT         ; power  ;              ; 3.3V    ;                 ;
+; 59       ; 164        ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 60       ; 81         ; --       ; MD_ADDR[21]    ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 61       ; 82         ; --       ; MD_ADDR[13]    ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 62       ; 83         ; --       ; MD_ADDR[4]     ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 63       ; 84         ; --       ; MD_ADDR[3]     ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 64       ; 85         ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 65       ; 86         ; --       ; MD_ADDR[14]    ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 66       ;            ;          ; NC             ;        ;              ;         ;                 ;
+; 67       ; 87         ; --       ; MD_ADDR[2]     ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 68       ; 88         ; --       ; MD_ADDR[15]    ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 69       ; 89         ; --       ; MD_ADDR[1]     ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 70       ; 90         ; --       ; MD_OE          ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 71       ; 91         ; --       ; MD_ADDR[16]    ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 72       ; 92         ; --       ; MD_CE          ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 73       ; 165        ; --       ; VCCIO          ; power  ;              ; 3.3V    ;                 ;
+; 74       ; 97         ; --       ; MD_ADDR[0]     ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 75       ;            ;          ; NC             ;        ;              ;         ;                 ;
+; 76       ; 98         ; --       ; VCCIO          ; power  ;              ; 3.3V    ;                 ;
+; 77       ; 99         ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 78       ; 107        ; --       ; MD_DQ[7]       ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 79       ; 108        ; --       ; MD_DQ[0]       ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 80       ; 109        ; --       ; MD_DQ[8]       ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 81       ; 110        ; --       ; MD_DQ[15]      ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 82       ; 111        ; --       ; MD_DQ[6]       ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 83       ; 112        ; --       ; MD_DQ[14]      ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 84       ; 113        ; --       ; MD_DQ[1]       ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 85       ; 114        ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 86       ; 115        ; --       ; MD_DQ[13]      ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 87       ; 116        ; --       ; MD_DQ[9]       ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 88       ; 117        ; --       ; MD_DQ[12]      ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 89       ; 118        ; --       ; TCK            ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 90       ;            ;          ; NC             ;        ;              ;         ;                 ;
+; 91       ; 119        ; --       ; MD_DQ[5]       ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 92       ; 120        ; --       ; ASEL           ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 93       ; 121        ; --       ; MD_DQ[2]       ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 94       ; 122        ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 95       ; 123        ; --       ; VCCIO          ; power  ;              ; 3.3V    ;                 ;
+; 96       ; 124        ; --       ; SOFT_RST       ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 97       ; 125        ; --       ; MD_DQ[10]      ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 98       ; 126        ; --       ; MD_DQ[4]       ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 99       ; 127        ; --       ; MD_DQ[3]       ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 100      ; 128        ; --       ; Mark3          ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 101      ; 129        ; --       ; MD_DQ[11]      ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 102      ; 130        ; --       ; TIMEE          ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 103      ;            ;          ; NC             ;        ;              ;         ;                 ;
+; 104      ; 131        ; --       ; TDO            ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 105      ; 132        ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 106      ; 140        ; --       ; FLASH_ADDR[2]  ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 107      ; 141        ; --       ; FLASH_ADDR[1]  ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 108      ;            ;          ; NC             ;        ;              ;         ;                 ;
+; 109      ; 142        ; --       ; FLASH_ADDR[3]  ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 110      ; 147        ; --       ; FLASH_ADDR[4]  ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 111      ; 148        ; --       ; FLASH_ADDR[5]  ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 112      ; 149        ; --       ; FLASH_ADDR[6]  ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 113      ; 150        ; --       ; FLASH_ADDR[7]  ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 114      ; 151        ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 115      ; 152        ; --       ; VCCIO          ; power  ;              ; 3.3V    ;                 ;
+; 116      ; 153        ; --       ; FLASH_ADDR[17] ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 117      ; 154        ; --       ; FLASH_ADDR[18] ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 118      ; 155        ; --       ; FLASH_ADDR[21] ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 119      ; 156        ; --       ; FLASH_WE       ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 120      ;            ;          ; NC             ;        ;              ;         ;                 ;
+; 121      ;            ;          ; NC             ;        ;              ;         ;                 ;
+; 122      ;            ;          ; NC             ;        ;              ;         ;                 ;
+; 123      ; 166        ; --       ; VCCINT         ; power  ;              ; 3.3V    ;                 ;
+; 124      ; 157        ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 125      ; 158        ; --       ; MISO           ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 126      ; 159        ; --       ; GND+           ;        ;              ;         ;                 ;
+; 127      ; 0          ; --       ; LWR            ; input  ; 3.3-V LVTTL  ;         ; Y               ;
+; 128      ; 1          ; --       ; GND+           ;        ;              ;         ;                 ;
+; 129      ; 167        ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 130      ; 2          ; --       ; VCCINT         ; power  ;              ; 3.3V    ;                 ;
+; 131      ; 3          ; --       ; FLASH_ADDR[20] ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 132      ; 4          ; --       ; FLASH_ADDR[19] ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 133      ; 5          ; --       ; FLASH_ADDR[8]  ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 134      ; 6          ; --       ; FLASH_ADDR[9]  ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 135      ; 7          ; --       ; GND            ; gnd    ;              ;         ;                 ;
+; 136      ; 8          ; --       ; FLASH_ADDR[10] ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 137      ; 9          ; --       ; FLASH_ADDR[11] ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 138      ; 10         ; --       ; FLASH_ADDR[12] ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 139      ; 11         ; --       ; FLASH_ADDR[13] ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 140      ; 12         ; --       ; FLASH_ADDR[14] ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 141      ; 17         ; --       ; FLASH_ADDR[15] ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 142      ; 18         ; --       ; FLASH_ADDR[16] ; output ; 3.3-V LVTTL  ;         ; Y               ;
+; 143      ; 19         ; --       ; FLASH_DQ[15]   ; bidir  ; 3.3-V LVTTL  ;         ; Y               ;
+; 144      ; 27         ; --       ; VCCIO          ; power  ;              ; 3.3V    ;                 ;
++----------+------------+----------+----------------+--------+--------------+---------+-----------------+
+Note: Pin directions (input, output or bidir) are based on device operating in user mode.
+
+
++--------------------------------------------------------------------------------------------------+
+; I/O Standard                                                                                     ;
++--------------+------------+----------------------+-------------------+-------------------+-------+
+; I/O Standard ; Input Vref ; Dedicated Input Pins ; Pins in I/O Bank1 ; Pins in I/O Bank2 ; Total ;
++--------------+------------+----------------------+-------------------+-------------------+-------+
+; 3.3-V LVTTL  ; -          ; 2                    ; 0                 ; 0                 ; 2     ;
++--------------+------------+----------------------+-------------------+-------------------+-------+
+
+
++--------------------------------------------------------------------+
+; Dedicated Inputs I/O                                               ;
++------+-------+-------+-------+--------------+------------+---------+
+; Name ; Pin # ; Type  ; VCCIO ; I/O Standard ; Input Vref ; Current ;
++------+-------+-------+-------+--------------+------------+---------+
+; LWR  ; 127   ; Input ; --    ; 3.3-V LVTTL  ; -          ; 0 mA    ;
+; MISO ; 125   ; Input ; --    ; 3.3-V LVTTL  ; -          ; 0 mA    ;
++------+-------+-------+-------+--------------+------------+---------+
+
+
++-----------------------------------------------+
+; Output Pin Default Load For Reported TCO      ;
++--------------+-------+------------------------+
+; I/O Standard ; Load  ; Termination Resistance ;
++--------------+-------+------------------------+
+; 3.3-V LVTTL  ; 10 pF ; Not Available          ;
+; 3.3-V LVCMOS ; 10 pF ; Not Available          ;
+; 3.3-V PCI    ; 10 pF ; 25 Ohm (Parallel)      ;
+; 2.5 V        ; 10 pF ; Not Available          ;
++--------------+-------+------------------------+
+Note: User assignments will override these defaults. The user specified values are listed in the Output Pins and Bidir Pins tables.
+
+
++-------------------------------------------------------------------------------------+
+; Fitter Resource Utilization by Entity                                               ;
++----------------------------+------------+------+---------------------+--------------+
+; Compilation Hierarchy Node ; Macrocells ; Pins ; Full Hierarchy Name ; Library Name ;
++----------------------------+------------+------+---------------------+--------------+
+; |Xflash_Lite               ; 63         ; 94   ; |Xflash_Lite        ; work         ;
++----------------------------+------------+------+---------------------+--------------+
+
+
++---------------------------------+
+; Non-Global High Fan-Out Signals ;
++-----------------+---------------+
+; Name            ; Fan-Out       ;
++-----------------+---------------+
+; FLASH_WE~2      ; 17            ;
+; MD_DQ~49        ; 16            ;
+; MD_CE           ; 3             ;
+; MD_OE           ; 3             ;
+; MD_DQ[0]~0      ; 2             ;
+; MD_ADDR[5]      ; 2             ;
+; GPIO_MOSI~18    ; 2             ;
+; MD_DQ[15]~15    ; 1             ;
+; MD_DQ[14]~14    ; 1             ;
+; MD_DQ[13]~13    ; 1             ;
+; MD_DQ[12]~12    ; 1             ;
+; MD_DQ[11]~11    ; 1             ;
+; MD_DQ[10]~10    ; 1             ;
+; MD_DQ[9]~9      ; 1             ;
+; MD_DQ[8]~8      ; 1             ;
+; MD_DQ[7]~7      ; 1             ;
+; MD_DQ[6]~6      ; 1             ;
+; MD_DQ[5]~5      ; 1             ;
+; MD_DQ[4]~4      ; 1             ;
+; MD_DQ[3]~3      ; 1             ;
+; MD_DQ[2]~2      ; 1             ;
+; MD_DQ[1]~1      ; 1             ;
+; FLASH_DQ[15]~15 ; 1             ;
+; FLASH_DQ[14]~14 ; 1             ;
+; FLASH_DQ[13]~13 ; 1             ;
+; FLASH_DQ[12]~12 ; 1             ;
+; FLASH_DQ[11]~11 ; 1             ;
+; FLASH_DQ[10]~10 ; 1             ;
+; FLASH_DQ[9]~9   ; 1             ;
+; FLASH_DQ[8]~8   ; 1             ;
+; FLASH_DQ[7]~7   ; 1             ;
+; FLASH_DQ[6]~6   ; 1             ;
+; FLASH_DQ[5]~5   ; 1             ;
+; FLASH_DQ[4]~4   ; 1             ;
+; FLASH_DQ[3]~3   ; 1             ;
+; FLASH_DQ[2]~2   ; 1             ;
+; FLASH_DQ[1]~1   ; 1             ;
+; FLASH_DQ[0]~0   ; 1             ;
+; TIMEE           ; 1             ;
+; ASEL            ; 1             ;
+; MD_ADDR[20]     ; 1             ;
+; MD_ADDR[19]     ; 1             ;
+; MD_ADDR[18]     ; 1             ;
+; MD_ADDR[17]     ; 1             ;
+; MD_ADDR[16]     ; 1             ;
+; MD_ADDR[15]     ; 1             ;
+; MD_ADDR[14]     ; 1             ;
+; MD_ADDR[13]     ; 1             ;
+; MD_ADDR[12]     ; 1             ;
+; MD_ADDR[11]     ; 1             ;
+; MD_ADDR[10]     ; 1             ;
+; MD_ADDR[9]      ; 1             ;
+; MD_ADDR[8]      ; 1             ;
+; MD_ADDR[7]      ; 1             ;
+; MD_ADDR[6]      ; 1             ;
+; MD_ADDR[4]      ; 1             ;
+; MD_ADDR[3]      ; 1             ;
+; MD_ADDR[2]      ; 1             ;
+; MD_ADDR[1]      ; 1             ;
+; MD_ADDR[0]      ; 1             ;
+; ~VCC~2          ; 1             ;
+; ~VCC~1          ; 1             ;
+; ~VCC~0          ; 1             ;
+; ~GND~1          ; 1             ;
+; ~GND~0          ; 1             ;
+; FLASH_DQ[15]~78 ; 1             ;
+; FLASH_DQ[14]~76 ; 1             ;
+; FLASH_DQ[13]~74 ; 1             ;
+; FLASH_DQ[12]~72 ; 1             ;
+; FLASH_DQ[11]~70 ; 1             ;
+; FLASH_DQ[10]~68 ; 1             ;
+; FLASH_DQ[9]~66  ; 1             ;
+; FLASH_DQ[8]~64  ; 1             ;
+; FLASH_DQ[7]~62  ; 1             ;
+; FLASH_DQ[6]~60  ; 1             ;
+; FLASH_DQ[5]~58  ; 1             ;
+; FLASH_DQ[4]~56  ; 1             ;
+; FLASH_DQ[3]~54  ; 1             ;
+; FLASH_DQ[2]~52  ; 1             ;
+; FLASH_DQ[1]~50  ; 1             ;
+; MD_OE~1         ; 1             ;
+; MD_CE~1         ; 1             ;
+; MD_ADDR[20]~61  ; 1             ;
+; MD_ADDR[19]~59  ; 1             ;
+; MD_ADDR[18]~57  ; 1             ;
+; MD_ADDR[17]~55  ; 1             ;
+; MD_ADDR[16]~53  ; 1             ;
+; MD_ADDR[15]~51  ; 1             ;
+; MD_ADDR[14]~49  ; 1             ;
+; MD_ADDR[13]~47  ; 1             ;
+; MD_ADDR[12]~45  ; 1             ;
+; MD_ADDR[11]~43  ; 1             ;
+; MD_ADDR[10]~41  ; 1             ;
+; MD_ADDR[9]~39   ; 1             ;
+; MD_ADDR[8]~37   ; 1             ;
+; MD_ADDR[7]~35   ; 1             ;
+; MD_ADDR[6]~33   ; 1             ;
+; MD_ADDR[5]~31   ; 1             ;
+; MD_ADDR[4]~29   ; 1             ;
+; MD_ADDR[3]~27   ; 1             ;
+; MD_ADDR[2]~25   ; 1             ;
+; MD_ADDR[1]~23   ; 1             ;
+; MD_ADDR[0]~21   ; 1             ;
+; MD_DQ[15]~81    ; 1             ;
+; MD_DQ[14]~79    ; 1             ;
+; MD_DQ[13]~77    ; 1             ;
+; MD_DQ[12]~75    ; 1             ;
+; MD_DQ[11]~73    ; 1             ;
+; MD_DQ[10]~71    ; 1             ;
+; MD_DQ[9]~69     ; 1             ;
+; MD_DQ[8]~67     ; 1             ;
+; MD_DQ[7]~65     ; 1             ;
+; MD_DQ[6]~63     ; 1             ;
+; MD_DQ[5]~61     ; 1             ;
+; MD_DQ[4]~59     ; 1             ;
+; MD_DQ[3]~57     ; 1             ;
+; MD_DQ[2]~55     ; 1             ;
+; MD_DQ[1]~53     ; 1             ;
+; MD_DQ[0]~51     ; 1             ;
+; FLASH_DQ[0]~48  ; 1             ;
++-----------------+---------------+
+
+
++------------------------------------------------+
+; Interconnect Usage Summary                     ;
++----------------------------+-------------------+
+; Interconnect Resource Type ; Usage             ;
++----------------------------+-------------------+
+; Output enables             ; 2 / 6 ( 33 % )    ;
+; PIA buffers                ; 63 / 288 ( 22 % ) ;
+; PIAs                       ; 63 / 288 ( 22 % ) ;
++----------------------------+-------------------+
+
+
++----------------------------------------------------------------------------+
+; LAB External Interconnect                                                  ;
++----------------------------------------------+-----------------------------+
+; LAB External Interconnects  (Average = 7.88) ; Number of LABs  (Total = 7) ;
++----------------------------------------------+-----------------------------+
+; 0                                            ; 1                           ;
+; 1                                            ; 0                           ;
+; 2                                            ; 1                           ;
+; 3                                            ; 0                           ;
+; 4                                            ; 0                           ;
+; 5                                            ; 0                           ;
+; 6                                            ; 1                           ;
+; 7                                            ; 0                           ;
+; 8                                            ; 0                           ;
+; 9                                            ; 0                           ;
+; 10                                           ; 2                           ;
+; 11                                           ; 1                           ;
+; 12                                           ; 2                           ;
++----------------------------------------------+-----------------------------+
+
+
++----------------------------------------------------------------------+
+; LAB Macrocells                                                       ;
++----------------------------------------+-----------------------------+
+; Number of Macrocells  (Average = 7.88) ; Number of LABs  (Total = 7) ;
++----------------------------------------+-----------------------------+
+; 0                                      ; 1                           ;
+; 1                                      ; 1                           ;
+; 2                                      ; 0                           ;
+; 3                                      ; 0                           ;
+; 4                                      ; 0                           ;
+; 5                                      ; 0                           ;
+; 6                                      ; 0                           ;
+; 7                                      ; 0                           ;
+; 8                                      ; 1                           ;
+; 9                                      ; 0                           ;
+; 10                                     ; 2                           ;
+; 11                                     ; 2                           ;
+; 12                                     ; 1                           ;
++----------------------------------------+-----------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Logic Cell Interconnection                                                                                                                                                                                                                                                                    ;
++-----+------------+-------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; LAB ; Logic Cell ; Input                                     ; Output                                                                                                                                                                                                                         ;
++-----+------------+-------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+;  A  ; LC4        ; MD_ADDR[15]                               ; FLASH_ADDR[15]                                                                                                                                                                                                                 ;
+;  A  ; LC8        ; MD_ADDR[12]                               ; FLASH_ADDR[12]                                                                                                                                                                                                                 ;
+;  A  ; LC5        ; MD_ADDR[14]                               ; FLASH_ADDR[14]                                                                                                                                                                                                                 ;
+;  A  ; LC6        ; MD_ADDR[13]                               ; FLASH_ADDR[13]                                                                                                                                                                                                                 ;
+;  A  ; LC13       ; MD_ADDR[8]                                ; FLASH_ADDR[8]                                                                                                                                                                                                                  ;
+;  A  ; LC12       ; MD_ADDR[9]                                ; FLASH_ADDR[9]                                                                                                                                                                                                                  ;
+;  A  ; LC1        ; MD_DQ[15]                                 ; FLASH_DQ[15]                                                                                                                                                                                                                   ;
+;  A  ; LC14       ; MD_ADDR[19]                               ; FLASH_ADDR[19]                                                                                                                                                                                                                 ;
+;  A  ; LC11       ; MD_ADDR[10]                               ; FLASH_ADDR[10]                                                                                                                                                                                                                 ;
+;  A  ; LC9        ; MD_ADDR[11]                               ; FLASH_ADDR[11]                                                                                                                                                                                                                 ;
+;  A  ; LC16       ; MD_ADDR[20]                               ; FLASH_ADDR[20]                                                                                                                                                                                                                 ;
+;  A  ; LC3        ; MD_ADDR[16]                               ; FLASH_ADDR[16]                                                                                                                                                                                                                 ;
+;  B  ; LC22       ; MD_DQ[4]                                  ; FLASH_DQ[4]                                                                                                                                                                                                                    ;
+;  B  ; LC29       ; MD_DQ[14]                                 ; FLASH_DQ[14]                                                                                                                                                                                                                   ;
+;  B  ; LC19       ; MD_DQ[10]                                 ; FLASH_DQ[10]                                                                                                                                                                                                                   ;
+;  B  ; LC21       ; MD_DQ[11]                                 ; FLASH_DQ[11]                                                                                                                                                                                                                   ;
+;  B  ; LC24       ; MD_DQ[12]                                 ; FLASH_DQ[12]                                                                                                                                                                                                                   ;
+;  B  ; LC17       ; MD_DQ[2]                                  ; FLASH_DQ[2]                                                                                                                                                                                                                    ;
+;  B  ; LC20       ; MD_DQ[3]                                  ; FLASH_DQ[3]                                                                                                                                                                                                                    ;
+;  B  ; LC25       ; MD_DQ[5]                                  ; FLASH_DQ[5]                                                                                                                                                                                                                    ;
+;  B  ; LC28       ; MD_DQ[6]                                  ; FLASH_DQ[6]                                                                                                                                                                                                                    ;
+;  B  ; LC30       ; MD_DQ[7]                                  ; FLASH_DQ[7]                                                                                                                                                                                                                    ;
+;  B  ; LC27       ; MD_DQ[13]                                 ; FLASH_DQ[13]                                                                                                                                                                                                                   ;
+;  C  ; LC43       ; MD_DQ[0]                                  ; FLASH_DQ[0]                                                                                                                                                                                                                    ;
+;  C  ; LC36       ;                                           ; CE_SPI                                                                                                                                                                                                                         ;
+;  C  ; LC45       ; MD_DQ[1]                                  ; FLASH_DQ[1]                                                                                                                                                                                                                    ;
+;  C  ; LC44       ; MD_DQ[8]                                  ; FLASH_DQ[8]                                                                                                                                                                                                                    ;
+;  C  ; LC46       ; MD_DQ[9]                                  ; FLASH_DQ[9]                                                                                                                                                                                                                    ;
+;  C  ; LC38       ; MD_CE                                     ; CE_FLASH                                                                                                                                                                                                                       ;
+;  C  ; LC37       ; MD_ADDR[0]                                ; FLASH_ADDR[0]                                                                                                                                                                                                                  ;
+;  C  ; LC40       ; MD_OE                                     ; OE_FLASH                                                                                                                                                                                                                       ;
+;  C  ; LC35       ;                                           ; SCLK                                                                                                                                                                                                                           ;
+;  C  ; LC33       ; GPIO_MOSI~18, MD_DQ[0], MD_ADDR[5], TIMEE ; GPIO_MOSI~18, TX                                                                                                                                                                                                               ;
+;  D  ; LC64       ; MD_OE, MD_CE                              ; MD_DQ[0], MD_DQ[1], MD_DQ[2], MD_DQ[3], MD_DQ[4], MD_DQ[5], MD_DQ[6], MD_DQ[7], MD_DQ[8], MD_DQ[9], MD_DQ[10], MD_DQ[11], MD_DQ[12], MD_DQ[13], MD_DQ[14], MD_DQ[15]                                                           ;
+;  F  ; LC88       ; FLASH_DQ[6]                               ; MD_DQ[6]                                                                                                                                                                                                                       ;
+;  F  ; LC84       ; FLASH_DQ[0]                               ; MD_DQ[0]                                                                                                                                                                                                                       ;
+;  F  ; LC85       ; FLASH_DQ[8]                               ; MD_DQ[8]                                                                                                                                                                                                                       ;
+;  F  ; LC93       ; FLASH_DQ[9]                               ; MD_DQ[9]                                                                                                                                                                                                                       ;
+;  F  ; LC94       ; FLASH_DQ[12]                              ; MD_DQ[12]                                                                                                                                                                                                                      ;
+;  F  ; LC92       ; FLASH_DQ[13]                              ; MD_DQ[13]                                                                                                                                                                                                                      ;
+;  F  ; LC83       ; FLASH_DQ[7]                               ; MD_DQ[7]                                                                                                                                                                                                                       ;
+;  F  ; LC86       ; FLASH_DQ[15]                              ; MD_DQ[15]                                                                                                                                                                                                                      ;
+;  F  ; LC91       ; FLASH_DQ[1]                               ; MD_DQ[1]                                                                                                                                                                                                                       ;
+;  F  ; LC89       ; FLASH_DQ[14]                              ; MD_DQ[14]                                                                                                                                                                                                                      ;
+;  G  ; LC104      ; FLASH_DQ[10]                              ; MD_DQ[10]                                                                                                                                                                                                                      ;
+;  G  ; LC109      ; FLASH_DQ[11]                              ; MD_DQ[11]                                                                                                                                                                                                                      ;
+;  G  ; LC107      ; FLASH_DQ[3]                               ; MD_DQ[3]                                                                                                                                                                                                                       ;
+;  G  ; LC105      ; FLASH_DQ[4]                               ; MD_DQ[4]                                                                                                                                                                                                                       ;
+;  G  ; LC97       ; FLASH_DQ[5]                               ; MD_DQ[5]                                                                                                                                                                                                                       ;
+;  G  ; LC102      ;                                           ; SOFT_RST                                                                                                                                                                                                                       ;
+;  G  ; LC108      ;                                           ; Mark3                                                                                                                                                                                                                          ;
+;  G  ; LC100      ; FLASH_DQ[2]                               ; MD_DQ[2]                                                                                                                                                                                                                       ;
+;  H  ; LC128      ; MD_OE, MD_CE, ASEL                        ; FLASH_DQ[0], FLASH_DQ[1], FLASH_DQ[2], FLASH_DQ[3], FLASH_DQ[4], FLASH_DQ[5], FLASH_DQ[6], FLASH_DQ[7], FLASH_DQ[8], FLASH_DQ[9], FLASH_DQ[10], FLASH_DQ[11], FLASH_DQ[12], FLASH_DQ[13], FLASH_DQ[14], FLASH_DQ[15], FLASH_WE ;
+;  H  ; LC115      ; MD_ADDR[1]                                ; FLASH_ADDR[1]                                                                                                                                                                                                                  ;
+;  H  ; LC121      ; MD_ADDR[7]                                ; FLASH_ADDR[7]                                                                                                                                                                                                                  ;
+;  H  ; LC120      ; MD_ADDR[6]                                ; FLASH_ADDR[6]                                                                                                                                                                                                                  ;
+;  H  ; LC117      ; MD_ADDR[4]                                ; FLASH_ADDR[4]                                                                                                                                                                                                                  ;
+;  H  ; LC116      ; MD_ADDR[3]                                ; FLASH_ADDR[3]                                                                                                                                                                                                                  ;
+;  H  ; LC124      ; MD_ADDR[17]                               ; FLASH_ADDR[17]                                                                                                                                                                                                                 ;
+;  H  ; LC113      ; MD_ADDR[2]                                ; FLASH_ADDR[2]                                                                                                                                                                                                                  ;
+;  H  ; LC118      ; MD_ADDR[5]                                ; FLASH_ADDR[5]                                                                                                                                                                                                                  ;
+;  H  ; LC125      ; MD_ADDR[18]                               ; FLASH_ADDR[18]                                                                                                                                                                                                                 ;
+;  H  ; LC126      ;                                           ; FLASH_ADDR[21]                                                                                                                                                                                                                 ;
++-----+------------+-------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------+
+; Fitter Device Options                                         ;
++----------------------------------------------+----------------+
+; Option                                       ; Setting        ;
++----------------------------------------------+----------------+
+; Enable user-supplied start-up clock (CLKUSR) ; Off            ;
+; Enable device-wide reset (DEV_CLRn)          ; Off            ;
+; Enable device-wide output enable (DEV_OE)    ; Off            ;
+; Enable INIT_DONE output                      ; Off            ;
+; Configuration scheme                         ; Passive Serial ;
+; Security bit                                 ; Off            ;
+; Base pin-out file on sameframe device        ; Off            ;
++----------------------------------------------+----------------+
+
+
++-----------------+
+; Fitter Messages ;
++-----------------+
+Info: *******************************************************************
+Info: Running Quartus II Fitter
+    Info: Version 11.0 Build 157 04/27/2011 SJ Full Version
+    Info: Processing started: Sat Nov 11 19:31:40 2017
+Info: Command: quartus_fit --read_settings_files=off --write_settings_files=off X-flash_Lite -c X-flash_Lite
+Info: Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info: Selected device EPM3128ATC144-10 for design "X-flash_Lite"
+Warning: Ignored locations or region assignments to the following nodes
+    Warning: Node "TCK" is assigned to location or region, but does not exist in design
+    Warning: Node "TDI" is assigned to location or region, but does not exist in design
+    Warning: Node "TDO" is assigned to location or region, but does not exist in design
+    Warning: Node "TMS" is assigned to location or region, but does not exist in design
+Info: Quartus II Fitter was successful. 0 errors, 5 warnings
+    Info: Peak virtual memory: 288 megabytes
+    Info: Processing ended: Sat Nov 11 19:31:40 2017
+    Info: Elapsed time: 00:00:00
+    Info: Total CPU time (on all processors): 00:00:00
+
+

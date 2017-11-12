@@ -1,0 +1,9 @@
+Fitter Status : Successful - Sat Nov 11 19:31:40 2017
+Quartus II Version : 11.0 Build 157 04/27/2011 SJ Full Version
+Revision Name : X-flash_Lite
+Top-level Entity Name : Xflash_Lite
+Family : MAX3000A
+Device : EPM3128ATC144-10
+Timing Models : Final
+Total macrocells : 63 / 128 ( 49 % )
+Total pins : 94 / 96 ( 98 % )

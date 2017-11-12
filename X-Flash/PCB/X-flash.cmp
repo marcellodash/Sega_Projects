@@ -1,0 +1,192 @@
+Cmp-Mod V01 Created by Cvpcb (after 2015-may-25 BZR unknown)-product   date = 20/01/2017 22:42:31
+
+BeginCmp
+TimeStamp = /57FB7765;
+Reference = C1;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /57FBB55E;
+Reference = C2;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /57FBA448;
+Reference = C3;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /57FB794B;
+Reference = C4;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /57FBD802;
+Reference = C5;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /57F9D525;
+Reference = C6;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /57FBC1C0;
+Reference = C7;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /57F9DDE4;
+Reference = C8;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /57FAA6CA;
+Reference = C9;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /57F9F3CC;
+Reference = C10;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /57F80A87;
+Reference = C11;
+ValeurCmp = CP;
+IdModule  = Capacitors_ThroughHole:C_Axial_D6_L11_P18;
+EndCmp
+
+BeginCmp
+TimeStamp = /57FA8E68;
+Reference = C12;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /57FA8AAF;
+Reference = C13;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /57FA1809;
+Reference = C14;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /57F7FA67;
+Reference = C15;
+ValeurCmp = CP;
+IdModule  = Capacitors_Tantalum_SMD:TantalC_SizeU_EIA-6032;
+EndCmp
+
+BeginCmp
+TimeStamp = /57FB8163;
+Reference = C16;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /57F7FBD0;
+Reference = C17;
+ValeurCmp = CP;
+IdModule  = Capacitors_Tantalum_SMD:TantalC_SizeU_EIA-6032;
+EndCmp
+
+BeginCmp
+TimeStamp = /57FB9BFB;
+Reference = C18;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /57FB8BE3;
+Reference = C19;
+ValeurCmp = C;
+IdModule  = Capacitors_SMD:C_0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /57F7F3C0;
+Reference = CON1;
+ValeurCmp = AVR-JTAG-10;
+IdModule  = AVR-JTAG-10;
+EndCmp
+
+BeginCmp
+TimeStamp = /5882821E;
+Reference = IC1;
+ValeurCmp = FM1808B-SG;
+IdModule  = Housings_SOIC:SOIC-28W_7.5x17.9mm_Pitch1.27mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /57F7D566;
+Reference = MD_Connector1;
+ValeurCmp = MD_Connector_H;
+IdModule  = Connect:HE10_64D;
+EndCmp
+
+BeginCmp
+TimeStamp = /588296A4;
+Reference = U1;
+ValeurCmp = Flash_NOR_Memory_32Mbit_-_1_Gbit;
+IdModule  = Housings_SSOP:TSSOP-56_6.1x14mm_Pitch0.5mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /57F8489F;
+Reference = U2;
+ValeurCmp = EPM570T144C5N;
+IdModule  = Housings_QFP:TQFP-144_20x20mm_Pitch0.5mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /57F7D6F6;
+Reference = U3;
+ValeurCmp = 25AA512;
+IdModule  = Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /57F7F72E;
+Reference = U4;
+ValeurCmp = LM117E;
+IdModule  = LLC-20;
+EndCmp
+
+BeginCmp
+TimeStamp = /57F97B26;
+Reference = U5;
+ValeurCmp = 24C32;
+IdModule  = Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm;
+EndCmp
+
+EndListe
