@@ -1,5 +1,7 @@
 # X-Flash an open source alternative to Everdrive
 
+![alt tag](https://pbs.twimg.com/media/DENr5-iXgAA6cny.jpg)
+
 *Work in Progress*
 
 Hardware folder : VHDL file for X-flash CPLD
