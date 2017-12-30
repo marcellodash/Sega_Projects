@@ -1,4 +1,7 @@
-# Sega Megadrive_Projects
+#X-flash
+
+X-Flash is my open-source alternative to Everdrive
+**Not finished Yet**
 
 Hardware folder : VHDL file for X-flash CPLD
 

@@ -1,8 +1,16 @@
 #include "genesis.h"
 
-// Ressource part
+// GFX part
 
 #include "./res/gfx.h"
+
+// PetitFatFs part 
+
+#include "./FatFs/integer.h"
+
+// SGGL part
+
+#include "sggl.h"
 
 // Variable part
 
@@ -10,10 +18,17 @@ volatile int ChoixMenu=0;
 volatile int interrupt=0;
 volatile int PosX=1;
 volatile int PosY=9;
-volatile int i=0;
+static unsigned long i=0;
 volatile int TXData=0;
 volatile int Song=0;
 volatile int Number=0;
+static char displaychar[4];
+static const char *Game_Name[31] = {0xFF};
+volatile unsigned char Game_Type[4] = {0x20};
+volatile long Game_Size=0;
+volatile int game_save=0;
+
+static unsigned char buf_spi[1024*32];
 
 // Function part
 
@@ -24,6 +39,13 @@ static void ClearMenu();
 static void UpdateMenu(int PosX,int PosY);
 static void EnableGPIO_TX();
 static void DisableGPIO_TX();
+static void drawSPIState(unsigned char value);
+static void CleanSPIState(void);
+static void drawFlashingState(unsigned char value);
+static void drawRAMState(int RAMFree);
+static void SetCPUCharge(void);
+static void StopCPUCharge(void);
+
 
 //DFAudio Communication Static Command
 
@@ -39,6 +61,36 @@ static void DisableGPIO_TX();
 #define PLAY    0x0D //Play Track
 #define PAUS    0x0E //Pause Track
 
+// Custom palette
+
+const u16 Aux_palette[16] =
+{
+    0x0000,     // 0 - black
+    0x0444,     // 1 - dark gray
+    0x0AAA,     // 2 - light gray
+    0x0EEE,     // 3 - white
+
+    0x0008,     // 4 - dark red
+    0x000E,     // 5 - red
+
+    0x0400,     // 6 - dark blue
+    0x0E00,     // 7 - blue
+
+    0x0420,     // 8 - dark blue/cyan
+    0x0E60,     // 9 - blue/cyan
+
+    0x0440,     // A - dark cyan
+    0x0EC0,     // B - cyan
+
+    0x0040,     // C - dark green
+    0x00E0,     // D - green
+
+    0x0044,     // D - dark yellow
+    0x00EE      // F - yellow
+};
+
+//s16 Scroll_Table[2] = {0,1,2,3,4,5,6,7,8,9};
+s16 Scroll_Table[1] = {1};
 
 void Wait(unsigned char delay)
 {
@@ -124,15 +176,41 @@ int main()
 {
 
 // init VDP
-
+	
     VDP_setScreenWidth320();
 
     u16 ind;
     u16 palette[64];
+	
+	VDP_setScreenWidth320();
+	
+
+
+    // setup VRAM
+  //  VDP_setPlanSize(64, 64);
+ //   VDP_setSpriteListAddress(0xA800);
+   // VDP_setHScrollTableAddress(0xAC00);
+  //  VDP_setWindowAddress(0xB000);
+  //  VDP_setBPlanAddress(0xC000);
+   // VDP_setAPlanAddress(0xE000);
+
+    // set window visible from first ro up to row 13
+  //  VDP_setWindowHPos(FALSE, 0);
+   // VDP_setWindowVPos(FALSE, 13);
+    // by default we draw text in window plan and in high priority
+  //  VDP_setTextPlan(PLAN_WINDOW);
+    VDP_setTextPriority(TRUE);
+	
+		// set scrolling mode (line)
+	VDP_setScrollingMode(HSCROLL_LINE,VSCROLL_PLANE);
+	
+
+	
+
 
     // set all palettes to black
     VDP_setPaletteColors(0, palette_black, 64);
-
+	
     // init Joypad driver
 
     JOY_init();
@@ -140,7 +218,11 @@ int main()
 		
     // load SD Title
     ind = TILE_USERINDEX;
-    VDP_drawImageEx(APLAN, &SD_image, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, ind), 0, 0, FALSE, TRUE);
+    VDP_drawImageEx(PLAN_A, &SD_image, TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, ind), 0, 0, FALSE, TRUE);
+	
+	// Load Plane Progress Bar Tiles in Plane B Area
+	
+	 VDP_fillTileData(0xFF,1280,1,1);
 	
     // Prepare Palette
 
@@ -149,6 +231,7 @@ int main()
     // Load final palette
 
     VDP_setPalette(0, SD_image.palette->data);
+	VDP_setPalette(2, Aux_palette);
 	
 
     // Add some basic graphics
@@ -309,9 +392,8 @@ static void UpdateMenu(int PosX,int PosY)
 		VDP_drawText("Genesis Model 1",16,9);
 		// Convert register value to char character
 		unsigned int Region = *(u8 *)0xA10001;
-		unsigned int TMSS = *(u8 *)0xA14000;
+	//	unsigned int TMSS = *(u8 *)0xA14000;
 		unsigned int MARS = *(u8 *)0xA130EC;
-		char displaychar[4];
 		intToStr(Region,displaychar, 5);
 		VDP_drawText(displaychar,15,22);
 		// Display Result
@@ -321,6 +403,199 @@ static void UpdateMenu(int PosX,int PosY)
 		if ( Region == 0x40){VDP_drawText("Japan",16,11);VDP_drawText("50Hz",16,13);}
 		if ( MARS == 0x48){VDP_drawText("YES",16,17);} else {VDP_drawText("NO",16,17);}			
 	}
+	
+	if ( PosX == 14 && PosY == 15 ) ////// DUMP ROM  ////// 
+	{
+		
+	ClearMenu();
+
+	// Add some basic graphics
+    VDP_drawText("        SEGA GENESIS GAME LOADER      ",0,6);
+	VDP_setTextPalette(0);
+	VDP_drawText("---",35,8);
+	VDP_drawText("---",35,19);
+	VDP_drawText("RAM",35,20);
+	VDP_drawText("SPI SD > Buffer",0,14);
+	VDP_drawText("Flash Progress ",0,17);
+	VDP_drawText("CPU Charge ",0,20);
+	VDP_drawText("|100%",16,15);
+	VDP_drawText("|100%",16,18);
+	VDP_drawText("|100%",16,22);
+	
+		// Display Game info
+		
+		Game_Size=1024*64;	
+		
+	
+	VDP_drawText("FREE RAM : ",0,8);
+	
+	VDP_drawText("GAME NAME: ",0,10); 
+	VDP_setTextPalette(1);
+	VDP_drawText(Game_Name,11,10);
+	VDP_setTextPalette(0);
+	
+	VDP_drawText("GAME SIZE: ",0,12);
+	intToStr(Game_Size/1024,displaychar,4);
+	VDP_setTextPalette(1);
+	VDP_drawText(displaychar,11,12);
+	VDP_setTextPalette(0);
+	VDP_drawText("Ko",16,12);
+	
+	VDP_drawText("TYPE : ",21,12); 
+	Game_Type[0] = 0x4D; Game_Type[1] = 0x44; Game_Type[2] = 0x20; Game_Type[3] = 0x20; Game_Type[4] = 0x20;
+	VDP_setTextPalette(1);
+	VDP_drawText(Game_Type,28,12);
+	VDP_setTextPalette(0);
+	
+			
+	// Display RAM Mask progress bar
+
+	for ( i = 0; i <10; i++)
+    {	
+    VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,1),35,18-i);
+	VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,1),36,18-i);
+	VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,1),37,18-i);
+	}
+	
+		// Display RAM progress bar 
+	
+		for ( i = 0; i <10; i++)
+    {	
+	VDP_setTileMapXY(PLAN_B,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,11),35,18-i);
+	VDP_setTileMapXY(PLAN_B,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,11),36,18-i);
+	VDP_setTileMapXY(PLAN_B,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,11),37,18-i);
+	}
+	
+	// Display SPI Mask bar
+	
+	for ( i = 0; i <16; i++)
+    {
+	VDP_setTileMapXY(PLAN_B,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,1),0+i,15);
+	}
+	
+	// Display Mask Flashing bar
+	
+	for ( i = 0; i <16; i++)
+    {
+	VDP_setTileMapXY(PLAN_B,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,1),0+i,18);
+	}
+	
+	// Display CPU Mask Charge bar
+	
+	for ( i = 0; i <16; i++)
+    {
+	VDP_setTileMapXY(PLAN_B,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,1),0+i,22);
+	}
+	
+	// Display CPU Charge bar
+	
+	for ( i = 0; i <16; i++)
+    {
+	VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,15),0+i,22);
+	}
+		
+		 	
+    // First Calculate and display FREE RAM
+	
+    // Calculate FREE RAM
+		
+	char displaychar[4];
+
+		
+	//intToStr(RAMFree,displaychar,5);
+	VDP_drawText("FREE RAM : ",0,8);
+	VDP_setTextPalette(1);
+	//VDP_drawText(displaychar,11,8);
+	VDP_setTextPalette(0);
+	VDP_drawText("Bytes",17,8);
+	
+//  Set RAM State
+ // drawRAMState(RAMFree);
+i=0;
+
+Game_Size=1024*128;	
+
+int l=0; // SPI Bar counter
+int n=0; // SPI Bar counter
+
+int Flash_Counter=Game_Size/16; // Flash counter 1
+int Progress_Value=0; // Flash Progress value
+
+int CurrentByte=0; // Read byte from spi slave
+
+long ram=0; // RAM counter 1
+
+// Flashing Loop
+ 
+   while ( i < Game_Size)
+ {
+	
+	while ( ram != sizeof(buf_spi)) // SPI Progress bar loop   
+      {
+		// Read and send Byte to RAM	
+          CurrentByte=0x00; // Read byte from SD
+          xmit_mmc(CurrentByte); // dummy fonction read
+		  
+	     // Update SPI Bar
+	      if (n==2048){l++;n=0;}
+		  if (ram==32768){l=0;CleanSPIState();}
+		  if (l>15){l=15;}
+	      drawSPIState(l);
+		  n++;
+		  ram++;	  
+	  }
+	//   
+	   CleanSPIState(); // Clean SPI
+	  		
+	 // Flash game with RAM Buffer 
+	 /*
+        for ( j = 0; j < buf_spi; j++) 
+          {
+			 //  Send RAM content to ROM         
+			//TODO
+					 
+		  }*/
+		  			    		   
+	// Clean UP RAM
+	
+//	drawRAMState(65536);
+	
+	i=i+ram; // update main counter
+	n=0;l=0;
+	ram=0;
+	
+
+				
+		// Calculate and upgrade Progress bar
+	
+		for ( Progress_Value = 0; Progress_Value < i/(Flash_Counter); Progress_Value++) 
+          {
+			  drawFlashingState(Progress_Value);
+		  }
+	//l=sizeof(buf_spi);
+	intToStr(i,displaychar,6); // Game_Size = 131072
+	VDP_drawText("                        ",0,8);
+	VDP_drawText("FREE RAM : ",0,8);
+	VDP_setTextPalette(1);
+	VDP_drawText(displaychar,11,8);
+	VDP_setTextPalette(0);
+	VDP_drawText("Bytes",17,8);
+		
+    // i=32784  size buf spi : 32768 ram 0
+	
+	
+	}
+	
+StopCPUCharge();
+VDP_drawText("Completed ! ",23,22);
+	
+	// Disable interrupt and wait for complete before call RAM Loop
+	  // disable interrupt when accessing VDP
+ //   SYS_disableInts();
+	
+	//RAM_Wait(100); // Wait some nop to be sure :D
+			
+}
 	
 	if ( PosX == 27 && PosY == 9 ) ////// Serial UART TEST  ////// 
 	{
@@ -453,6 +728,62 @@ static void DisableGPIO_TX(void)
 {
     asm("move.b #0,0xA13040");
 }
+
+
+static void drawSPIState(unsigned char value)
+{		
+VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,4),0+value,15);	
+}
+
+static void CleanSPIState(void)
+{
+unsigned char state=0;
+for ( state = 0; state <16; state++)
+{		
+VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,0),state,15);
+}	
+}
+
+static void drawFlashingState(unsigned char value)
+{		
+VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,13),0+value,18);	
+}
+
+static void drawRAMState( int RAMFree)
+{
+	for ( i = 0; i <10; i++)
+    {	
+    VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,1),35,18-i);
+	VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,1),36,18-i);
+	VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,1),37,18-i);
+	}
+	
+	for ( i = 0; i < 10-(RAMFree/6553); i++)
+    {	
+	VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,11),35,18-i);
+	VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,11),36,18-i);
+	VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,11),37,18-i);
+	}
+
+}
+
+
+static void SetCPUCharge(void)
+{		
+	for ( i = 0; i <15; i++)
+    {
+	VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,15),0+i,22);
+	}
+}
+
+static void StopCPUCharge(void)
+{		
+	for ( i = 0; i <16; i++)
+    {
+	VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,0),0+i,22);
+	}
+}
+
 
 
 
