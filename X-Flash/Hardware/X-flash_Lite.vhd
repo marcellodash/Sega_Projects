@@ -47,21 +47,28 @@ ENTITY Xflash_Lite is
 		
 ARCHITECTURE toplevel OF Xflash_Lite IS
 
+signal GPIO_TX:     std_logic;
+
 signal GPIO_SCLK:   std_logic;
 signal GPIO_MOSI:   std_logic;
 signal GPIO_MISO:   std_logic;
 signal GPIO_CS:     std_logic;
 
+signal GPIO_A18:    std_logic;
+signal GPIO_A19:    std_logic;
+signal GPIO_A20:    std_logic;
+signal GPIO_A21:    std_logic;
+
                                  
 BEGIN
   
   -- Megadrive Addr Bus > 64 MB Flash Addr 
- 
-        FLASH_ADDR(20 DOWNTO 0) <= MD_ADDR(20 DOWNTO 0);
-		
+  
+ FLASH_ADDR(17 DOWNTO 0) <= MD_ADDR(17 DOWNTO 0);
+
   -- MD-Dumper > 64 MB Flash : Write mode
     
-	     FLASH_DQ(15 DOWNTO 0) <= MD_DQ(15 DOWNTO 0) when MD_CE = '0' and MD_OE =  '1' and ASEL ='0'  else (others => 'Z');
+	     FLASH_DQ(15 DOWNTO 0) <= MD_DQ(15 DOWNTO 0) when MD_CE = '0' and MD_OE =  '1' else (others => 'Z');
 		
   -- 64 MB Flash > Megadrive : Read Mode
   
@@ -73,11 +80,21 @@ BEGIN
         
 		CE_FLASH <= MD_CE;
       OE_FLASH <= MD_OE;
-		FLASH_WE <= '0' when ASEL = '0' and MD_CE = '0' and MD_OE =  '1' else '1'  ;  -- For MD-Dumper Write Mode
+		FLASH_WE <= '0' when ASEL = '0' and MD_CE = '0' and MD_OE = '1' else '1' ; -- For MD-Dumper Write Mode
 		
-	--	FLASH_WE <= '1';
-		 FLASH_ADDR(21) <= '0';
-		 
+	-- Bankswitch Pin
+	
+	   GPIO_A18 <= '0' when TIMEE = '0' and MD_DQ(0) = '1' and MD_ADDR(4) ='1' else '1' when TIMEE = '0' and MD_ADDR(4) ='1' and MD_DQ(0) = '0'; 
+			
+	  FLASH_ADDR(18) <= '1' when GPIO_A18 <= '0' else '0' when GPIO_A18 <= '1'; 
+	  FLASH_ADDR(19) <= '0';
+	  FLASH_ADDR(20) <= '0';
+	  FLASH_ADDR(21) <= '0';
+	  
+	 
+		
+	--FLASH_WE <= '1';
+	 
   --RX <= (MD_CE NAND MD_CE) NAND MD_ADDR(20);
   --CE_FLASH <= (MD_ADDR(20) NAND MD_ADDR(20)) NAND (MD_CE NAND MD_CE);
  -- SCLK <= LWR;     -- Disable SPÏ_CLK // SRAM_WE
@@ -85,19 +102,24 @@ BEGIN
 	--Extra Hardware
 	
 	Mark3 <= 'Z';    -- Disable Master System mode
+	SOFT_RST <= '0' when GPIO_A18 <= '1' and TIMEE = '0' and ( MD_DQ(0) = '1' or MD_DQ(1) = '1' ) and MD_ADDR(4) ='1'  else 'Z' when TIMEE = '1'   ; -- Pulse reset when bankswitch
 	
-	CE_SPI <= 'Z';   -- Disable SPÏ Slave
-   SOFT_RST     <= 'Z';
+--	CE_SPI <= 'Z';   -- Disable SPÏ Slave
+  -- SOFT_RST     <= 'Z';
 	--SCLK <= '1';
 	
 	-- X-flash Extra IO Mapping 
 	
-	GPIO_MOSI <= '1' when TIMEE = '0' and MD_DQ(0) = '1' and MD_ADDR(5) ='1' else '0'  when TIMEE = '0' and MD_ADDR(5) ='1' and MD_DQ(0) = '0'  ; -- RX mapped at 0xA13040
+	GPIO_TX <= '0' when TIMEE = '0' and MD_DQ(0) = '1' and MD_ADDR(5) ='1' else '1'  when TIMEE = '0' and MD_ADDR(5) ='1' and MD_DQ(0) = '0'  ; -- TX mapped at 0xA13040	
+	TX <= '1' when GPIO_TX <= '0' else '0' when GPIO_TX <= '1'; 
+	
+	--FLASH_ADDR(18) <= '1' when rising_edge(GPIO_TX) and MD_DQ(0) = '1' and MD_ADDR(20) ='1' ;
+	
  
 	 -- Register to OUT
 	 
-	 TX <= GPIO_MOSI;
-	 SCLK <= GPIO_SCLK;
+	 --TX <= GPIO_MOSI;
+	 --SCLK <= GPIO_SCLK;
 	
 	
 																	
