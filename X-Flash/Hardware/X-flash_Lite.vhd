@@ -2,15 +2,15 @@
 -- Simple 64Mb Cartridge with Sram / SPI / UART
 -- X-death 05/2018
 
--- What is currently working:                      
--- [ ] - ROM Banking                                                         --
+-- What is currently working: 
+                     
+-- [X] - ROM Banking                                                         --
 -- [ ] - SRAM Banking                                                        --
 -- [X] - UART                                                                --
--- [ ] - SPI                                                                 --
--- [ ] - GPIO                                                                --
--- [ ] - All other unknown parts    
-
-
+-- [ ] - SPI Micro SD Driver                                                 --
+-- [ ] - SSF Mapper                                                          --   
+-- [ ] - Pier Solar mapper                                                   --  
+	 
 LIBRARY IEEE;                                                  
 USE IEEE.STD_LOGIC_1164.ALL;                     
 USE IEEE.std_logic_unsigned.ALL; 
@@ -67,9 +67,6 @@ signal GPIO_A18:    std_logic;
 signal GPIO_A19:    std_logic;
 signal GPIO_A20:    std_logic;
 signal GPIO_A21:    std_logic;
-
-signal BANK_SELECT: std_logic_vector(3 downto 0);
-
                                  
 BEGIN
   
@@ -101,15 +98,13 @@ BEGIN
       GPIO_A20 <= '0' when TIMEE = '0' and MD_DQ(2) = '1' and MD_ADDR(4) ='1' else '1' when TIMEE = '0' and MD_ADDR(4) ='1' and MD_DQ(2) = '0';
       GPIO_A21 <= '0' when TIMEE = '0' and MD_DQ(3) = '1' and MD_ADDR(4) ='1' else '1' when TIMEE = '0' and MD_ADDR(4) ='1' and MD_DQ(3) = '0';		
 			
-	 FLASH_ADDR(18) <= not GPIO_A18 or not GPIO_A20  or MD_ADDR(18);
-    FLASH_ADDR(19) <= not GPIO_A19 or not GPIO_A20  or MD_ADDR(19);
-	-- FLASH_ADDR(20) <= not GPIO_A20 or not GPIO_A21  or MD_ADDR(20);
-    --FLASH_ADDR(20) <= not GPIO_A20 or MD_ADDR(20);
-   -- FLASH_ADDR(21) <= not GPIO_A21 or MD_ADDR(21);
+	     
+		  FLASH_ADDR(18) <= not GPIO_A18 and not MD_ADDR(18); 
+		  FLASH_ADDR(19) <= ((not GPIO_A18 and not MD_ADDR(19) and MD_ADDR(18)) or ( not GPIO_A18 and MD_ADDR(19) and not MD_ADDR(18)));
+		  FLASH_ADDR(20) <= ((not GPIO_A18 and not MD_ADDR(20) and MD_ADDR(19) and MD_ADDR(18) ) or ( not GPIO_A18 and MD_ADDR(20) and not MD_ADDR(19) ) or ( not GPIO_A18 and MD_ADDR(20) and not MD_ADDR(18)) );  
+		  FLASH_ADDR(21) <= not GPIO_A18 and MD_ADDR(20) and MD_ADDR(19) and MD_ADDR(18);
+		
 	
-	 FLASH_ADDR(20) <= '0';
-	 FLASH_ADDR(21) <= '0';
-	  	
 	--FLASH_WE <= '1';
 	 
   --RX <= (MD_CE NAND MD_CE) NAND MD_ADDR(20);
@@ -119,17 +114,17 @@ BEGIN
 	--Extra Hardware
 	
 	Mark3 <= 'Z';    -- Disable Master System mode
-	SOFT_RST <= '0' when GPIO_A18 <= '1' and TIMEE = '0' and ( MD_DQ(0) = '1' or MD_DQ(1) = '1' ) and MD_ADDR(4) ='1'  else 'Z' when TIMEE = '1'   ; -- Pulse reset when bankswitch
+	--SOFT_RST <= '0' when GPIO_A18 <= '1' and TIMEE = '0' and ( MD_DQ(0) = '1' or MD_DQ(1) = '1' ) and MD_ADDR(4) ='1'  else 'Z' when TIMEE = '1'   ; -- Pulse reset when bankswitch
 	
 --	CE_SPI <= 'Z';   -- Disable SP? Slave
-  -- SOFT_RST     <= 'Z';
+   SOFT_RST     <= 'Z';
 	--SCLK <= '1';
 	
 	-- X-flash Extra IO Mapping 
 	
 	GPIO_TX <= '0' when TIMEE = '0' and MD_DQ(0) = '1' and MD_ADDR(5) ='1' else '1'  when TIMEE = '0' and MD_ADDR(5) ='1' and MD_DQ(0) = '0'  ; -- TX mapped at 0xA13040	
 	--TX <= '1' when GPIO_TX <= '0' else '0' when GPIO_TX <= '1'; 
-	TX <= BANK_SELECT(0);
+	 TX <= MD_ADDR(18) and not MD_CE  and not MD_OE ;
 	
 	--FLASH_ADDR(18) <= '1' when rising_edge(GPIO_TX) and MD_DQ(0) = '1' and MD_ADDR(20) ='1' ;
 	
@@ -142,5 +137,3 @@ BEGIN
 	
 																	
 END toplevel;
-
---FLASH_ADDR(21 DOWNTO 19) <= MD_ADDR(20 DOWNTO 18);
