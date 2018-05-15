@@ -1,3 +1,12 @@
+ /**
+ *  \file main.c
+ *  \brief X-flash BIOS
+ *  \author X-death
+ *  \date 05/2018
+ *
+ * This unit is used as a BIOS for testing all X-flash feature
+ */
+
 #include "genesis.h"
 
 // GFX part
@@ -19,33 +28,45 @@ volatile int interrupt=0;
 volatile int PosX=1;
 volatile int PosY=9;
 static unsigned long i=0;
+volatile unsigned char SPIData=0;
 volatile int TXData=0;
 volatile int Song=0;
 volatile int Number=0;
 static char displaychar[4];
-static const char *Game_Name[31] = {0xFF};
+static const char *Game_Name[31];
 volatile unsigned char Game_Type[4] = {0x20};
 volatile long Game_Size=0;
 volatile int game_save=0;
+volatile int Game=1; // Bankswitch var
 
 static unsigned char buf_spi[1024*32];
 
-// Function part
+// BIOS Function part
 
 static void joyEvent(u16 joy, u16 changed, u16 state);
+static void CPLDEvent(u16 joy, u16 changed, u16 state);
 static void UARTEvent(u16 joy, u16 changed, u16 state);
+static void SPIEvent(u16 joy, u16 changed, u16 state);
 static void UpdateCursor(int PosX,int PosY);
 static void ClearMenu();
 static void UpdateMenu(int PosX,int PosY);
+static void EnableBankswitch(int game);
 static void EnableGPIO_TX();
 static void DisableGPIO_TX();
 static void drawSPIState(unsigned char value);
 static void CleanSPIState(void);
 static void drawFlashingState(unsigned char value);
-static void drawRAMState(int RAMFree);
-static void SetCPUCharge(void);
 static void StopCPUCharge(void);
 
+//SPI Macro
+
+ // Set CS  "high"  Fil Bleu
+ // Set CS  "low" 
+ // Set SCK  "low"  Fil marron
+ // Set SCK "low" 
+ // Set MOSI "high"  Fil rouge
+ // Set MOSI "low" 
+ // Fil violet MISO
 
 //DFAudio Communication Static Command
 
@@ -100,6 +121,61 @@ void Wait(unsigned char delay)
         asm("nop\n");
     }
 }
+
+CODE_IN_WRAM
+void EnableBankswitch(int game)
+{
+	vu8 *pb;
+    u16 i;
+
+    // disable display
+    VDP_setEnable(0);
+
+    // clear IO register for cold
+    pb = (vu8 *) 0xA10000;
+    i = 16;
+    while(i--) *pb++ = 0;
+
+    asm(
+"       lea switch, %a0\n"
+"       lea 0xFF0000, %a1\n"
+"       move.w #switch_end-switch-1, %d1\n"
+"\n"
+"move_code:\n"
+"       move.b (%a0)+, (%a1)+\n"
+"       dbra %d1, move_code\n"
+"       jmp 0xFF0000\n"
+"\n"
+"switch:\n");
+
+        // do the switch
+        *((vu8 *) 0xA13010) = game;
+    asm(
+"       nop\n"
+"       nop\n"
+"       nop\n"
+"       nop\n"
+"       nop\n"
+"       nop\n"
+"       move   #0x2700,%sr\n"
+"       move.l (0),%a7\n"
+"       move.l (4),%a0\n"
+"       jmp    (%a0)\n"
+"switch_end:\n");
+}
+
+// UART //
+
+static void EnableGPIO_TX(void)
+{
+    asm("move.b #1,0xA13040");
+}
+
+static void DisableGPIO_TX(void)
+{
+    asm("move.b #0,0xA13040");
+}
+
 
 void uart_tx_bit_bang (unsigned char val,unsigned char delay1,unsigned char delay2,unsigned char delay3)
 {
@@ -183,30 +259,10 @@ int main()
     u16 palette[64];
 	
 	VDP_setScreenWidth320();
-	
-
-
-    // setup VRAM
-  //  VDP_setPlanSize(64, 64);
- //   VDP_setSpriteListAddress(0xA800);
-   // VDP_setHScrollTableAddress(0xAC00);
-  //  VDP_setWindowAddress(0xB000);
-  //  VDP_setBPlanAddress(0xC000);
-   // VDP_setAPlanAddress(0xE000);
-
-    // set window visible from first ro up to row 13
-  //  VDP_setWindowHPos(FALSE, 0);
-   // VDP_setWindowVPos(FALSE, 13);
-    // by default we draw text in window plan and in high priority
-  //  VDP_setTextPlan(PLAN_WINDOW);
     VDP_setTextPriority(TRUE);
 	
 		// set scrolling mode (line)
 	VDP_setScrollingMode(HSCROLL_LINE,VSCROLL_PLANE);
-	
-
-	
-
 
     // set all palettes to black
     VDP_setPaletteColors(0, palette_black, 64);
@@ -262,8 +318,8 @@ int main()
 	VDP_drawText("SPI_TEST",15,9);
 	VDP_drawText("SD_INFO",15,11);
 	VDP_drawText("DIR_LIST",15,13);
-	VDP_drawText("DUMP_ROM",15,15);
-	VDP_drawText("LOAD_ROM",15,17);
+	VDP_drawText("LOAD_ROM",15,15);
+	VDP_drawText("PLAY_ROM",15,17);
 	
 	// MP3 Menu
 	
@@ -390,21 +446,66 @@ static void UpdateMenu(int PosX,int PosY)
 		VDP_drawText("SCD Present :",2,19);
 		VDP_setTextPalette(1);
 		VDP_drawText("Genesis Model 1",16,9);
-		// Convert register value to char character
 		unsigned int Region = *(u8 *)0xA10001;
-	//	unsigned int TMSS = *(u8 *)0xA14000;
-		unsigned int MARS = *(u8 *)0xA130EC;
+		// Convert register value to char character
 		intToStr(Region,displaychar, 5);
 		VDP_drawText(displaychar,15,22);
 		// Display Result
-		if ( Region == 0xA1){VDP_drawText("North American",16,11);VDP_drawText("60Hz",16,13);}
-		if ( Region == 0xE1){VDP_drawText("Europe",16,11);VDP_drawText("50Hz",16,13);}
-		if ( Region == 0x21){VDP_drawText("Japan",16,11);VDP_drawText("60Hz",16,13);}
-		if ( Region == 0x40){VDP_drawText("Japan",16,11);VDP_drawText("50Hz",16,13);}
-		if ( MARS == 0x48){VDP_drawText("YES",16,17);} else {VDP_drawText("NO",16,17);}			
+		if ( Region >> 6 == 2){VDP_drawText("North American",16,11);VDP_drawText("60Hz",16,13);}
+		if ( Region >> 6 == 3){VDP_drawText("Europe",16,11);VDP_drawText("50Hz",16,13);}
+		if ( Region >> 6 == 0){VDP_drawText("Japan",16,11);VDP_drawText("60Hz",16,13);}
+		if ( Region >> 6 == 1){VDP_drawText("Japan",16,11);VDP_drawText("50Hz",16,13);}
+		if ( (Region & 0x01) == 1){VDP_drawText("YES",16,15);} else {VDP_drawText("NO",16,15);} // TMSS Present
+	///	if ( MARS == 0x48){VDP_drawText("YES",16,17);} else {VDP_drawText("NO",16,17);} // 32X Connected
+        if ( (Region & 0x10) == 1){VDP_drawText("YES",16,19);} else {VDP_drawText("NO",16,19);} // Sega-CD connected	
 	}
 	
-	if ( PosX == 14 && PosY == 15 ) ////// DUMP ROM  ////// 
+	if ( PosX == 1 && PosY == 11 ) ////// Configuration ////// 
+	{
+	    PosY=PosY-2;
+		ClearMenu();		
+		VDP_drawText("           CPLD Configuration           ",0,6);
+		VDP_drawText(">",PosX,PosY);
+		VDP_setTextPalette(0);
+		VDP_drawText("Start ROM with an offset of +     Ko ",2,9);
+				VDP_drawText("                                ",2,11);
+		VDP_drawText("Type : MD ",2,13);
+		VDP_drawText("Size :  512",2,15);
+		VDP_setTextPalette(1);
+		intToStr(Game*512,displaychar, 4);
+		VDP_drawText(displaychar,32,9);
+		// Set a new joypad interrupt
+		JOY_setEventHandler(CPLDEvent);
+		
+	}
+	
+	if ( PosX == 14 && PosY == 9 ) ////// SPI Test ////// 
+	{
+		PosX=PosX-13;
+		PosY=PosY;
+	    ClearMenu();		
+		VDP_drawText("           SERIAL SPI TEST           ",0,6);
+		VDP_drawText(">",PosX,PosY);
+		VDP_setTextPalette(0);
+		VDP_drawText("Set CS High ",2,9);
+		VDP_drawText("Set CS Low ",2,11);
+		VDP_drawText("Set SCK High ",2,13);
+		VDP_drawText("Set SCK Low ",2,15);
+		VDP_drawText("Set MOSI High ",2,17);
+		VDP_drawText("Set MOSI Low ",2,19);
+		VDP_drawText("Get MISO State : ",2,21);
+		
+		VDP_drawText("<- or -> to Change DATA ",15,9);
+		VDP_drawText("START to Send DATA",19,13);
+		
+		VDP_setTextPalette(1);
+		
+		// Set a new joypad interrupt
+		JOY_setEventHandler(SPIEvent);
+		
+	}
+	
+	if ( PosX == 14 && PosY == 15 ) ////// LOAD ROM  ////// 
 	{
 		
 	ClearMenu();
@@ -431,7 +532,7 @@ static void UpdateMenu(int PosX,int PosY)
 	
 	VDP_drawText("GAME NAME: ",0,10); 
 	VDP_setTextPalette(1);
-	VDP_drawText(Game_Name,11,10);
+	VDP_drawText(*Game_Name,11,10);
 	VDP_setTextPalette(0);
 	
 	VDP_drawText("GAME SIZE: ",0,12);
@@ -596,6 +697,12 @@ VDP_drawText("Completed ! ",23,22);
 	//RAM_Wait(100); // Wait some nop to be sure :D
 			
 }
+
+	if ( PosX == 14 && PosY == 17 ) ////// Play ROM  ////// 
+	{
+		while (1){
+		EnableBankswitch(Game);}
+	}	
 	
 	if ( PosX == 27 && PosY == 9 ) ////// Serial UART TEST  ////// 
 	{
@@ -608,7 +715,7 @@ VDP_drawText("Completed ! ",23,22);
 		VDP_drawText("PRESS <- or -> to Change DATA :",2,13);
 		VDP_drawText("PRESS START to Send DATA",2,15);
 		VDP_drawText("PRESS B for reset BIOS",2,19);
-		VDP_setTextPalette(1);
+				VDP_setTextPalette(1);
 		// Set a new joypad interrupt
 		JOY_setEventHandler(UARTEvent);		
 	}
@@ -652,6 +759,132 @@ VDP_drawText("Completed ! ",23,22);
 		DF_StopTrack();
 	}	
 }
+
+static void CPLDEvent(u16 joy, u16 changed, u16 state)
+{
+	
+	if (changed & state & BUTTON_DOWN)
+    {
+		VDP_drawText(" ",PosX,PosY-2);
+        PosY=PosY+2;
+		if (PosY > 24){PosY=24;}
+		VDP_drawText(">",PosX,PosY-2);       		
+    }
+	
+	if (changed & state & BUTTON_UP)
+    {
+		VDP_drawText(" ",PosX,PosY-2);
+        PosY=PosY-2;
+		if (PosY < 11){PosY=11;}
+		VDP_drawText(">",PosX,PosY-2);       		
+    }
+	
+	if (changed & state & BUTTON_A)
+    {
+		if (PosY == 11) // ROM Offset
+		{
+        Game++;
+        if (Game > 15){Game=1;}		
+	    intToStr(Game*512,displaychar, 4);
+		VDP_drawText("    ",32,9);
+		VDP_drawText(displaychar,32,9);
+		}		
+    }
+	
+	if (changed & state & BUTTON_B)
+    {
+		asm("move.l (4),%a0\n"); // Do a BIOS Reset
+		asm("jmp (%a0)\n");		
+    }
+	
+	if (changed & state & BUTTON_START)
+    {
+	  while (1){EnableBankswitch(Game);}		
+    }
+}
+
+static void SPIEvent(u16 joy, u16 changed, u16 state)
+{
+	
+	if (changed & state & BUTTON_DOWN)
+    {
+		VDP_drawText(" ",PosX-13,PosY);
+        PosY=PosY+2;
+		if (PosY > 21){PosY=21;}
+		VDP_drawText(">",PosX-13,PosY);       		
+    }
+	
+	if (changed & state & BUTTON_UP)
+    {
+		VDP_drawText(" ",PosX-13,PosY);
+        PosY=PosY-2;
+		if (PosY < 9){PosY=9;}
+		VDP_drawText(">",PosX-13,PosY);       		
+    }
+	
+	 if (changed & state & BUTTON_RIGHT)
+    {
+		VDP_drawText("   ",25,11);
+        SPIData=SPIData+1;
+		if (SPIData >= 255){SPIData=255;}
+		char displaychar[5];
+		intToStr(SPIData,displaychar,3);
+		VDP_drawText(displaychar,25,11);		
+    }
+	
+	if (changed & state & BUTTON_LEFT)
+    {
+		VDP_drawText("   ",25,11);
+        SPIData=SPIData-1;
+		if (SPIData <= 0){SPIData=0;}
+		char displaychar[5];
+		intToStr(SPIData,displaychar,3);
+		VDP_drawText(displaychar,25,11);		
+    }
+	
+	if (changed & state & BUTTON_B)
+    {
+		asm("move.l (4),%a0\n"); // Do a BIOS Reset
+		asm("jmp (%a0)\n");		
+    }
+	
+	if (changed & state & BUTTON_START)
+    {
+		xmit_mmc(SPIData);		
+    }
+	
+	if (changed & state & BUTTON_A && PosY==9) // CS High
+    {
+		asm("move.b #1,0xA13020");
+    }
+	
+	if (changed & state & BUTTON_A && PosY==11) // CS Low
+    {
+		asm("move.b #0,0xA13020");	
+    }
+	
+	if (changed & state & BUTTON_A && PosY==13) // SCK High
+    {
+		asm("move.b #1,0xA13080");
+    }
+	
+	if (changed & state & BUTTON_A && PosY==15) // SCK Low
+    {
+		asm("move.b #0,0xA13080");	
+    }
+	
+	if (changed & state & BUTTON_A && PosY==17) // MOSI High
+    {
+		asm("move.b #1,0xA13040");
+    }
+	
+	if (changed & state & BUTTON_A && PosY==19) // MOSI Low
+    {
+		asm("move.b #0,0xA13040");	
+    }
+	
+}
+
 
 static void UARTEvent(u16 joy, u16 changed, u16 state)
 {
@@ -719,16 +952,6 @@ static void UARTEvent(u16 joy, u16 changed, u16 state)
 		
 }
 
-static void EnableGPIO_TX(void)
-{
-    asm("move.b #1,0xA13040");
-}
-
-static void DisableGPIO_TX(void)
-{
-    asm("move.b #0,0xA13040");
-}
-
 
 static void drawSPIState(unsigned char value)
 {		
@@ -749,32 +972,6 @@ static void drawFlashingState(unsigned char value)
 VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,13),0+value,18);	
 }
 
-static void drawRAMState( int RAMFree)
-{
-	for ( i = 0; i <10; i++)
-    {	
-    VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,1),35,18-i);
-	VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,1),36,18-i);
-	VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,1),37,18-i);
-	}
-	
-	for ( i = 0; i < 10-(RAMFree/6553); i++)
-    {	
-	VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,11),35,18-i);
-	VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,11),36,18-i);
-	VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,11),37,18-i);
-	}
-
-}
-
-
-static void SetCPUCharge(void)
-{		
-	for ( i = 0; i <15; i++)
-    {
-	VDP_setTileMapXY(PLAN_A,TILE_ATTR_FULL(PAL2, FALSE, FALSE, FALSE,15),0+i,22);
-	}
-}
 
 static void StopCPUCharge(void)
 {		

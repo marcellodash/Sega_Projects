@@ -6,8 +6,9 @@
                      
 -- [X] - ROM Banking                                                         --
 -- [ ] - SRAM Banking                                                        --
--- [X] - UART                                                                --
--- [ ] - SPI Micro SD Driver                                                 --
+-- [X] - Serial UART                                                         --
+-- [ ] - Serial SPI                                                          --
+-- [ ] - Micro SD Driver                                                     --
 -- [ ] - SSF Mapper                                                          --   
 -- [ ] - Pier Solar mapper                                                   --  
 	 
@@ -38,7 +39,7 @@ ENTITY Xflash_Lite is
 				 
 				SOFT_RST :OUT STD_LOGIC;   --Reset Cartridge
 				Mark3:OUT STD_LOGIC;       --Master System Mode ( 1/Z : disable / 0:Enable)
-				TX:OUT STD_LOGIC;          --UART Slave Data IN || SRAM_CE || OUT Data CPLD > IN Data SPI Slave
+				TX:OUT STD_LOGIC;          --UART Slave Data IN || SRAM_CE || MOSI OUT Data CPLD > IN Data SPI Slave
 				CE_SPI:OUT STD_LOGIC;      --/CE for SPI Slave 
 				SCLK:OUT STD_LOGIC;        --Clock SPI Slave || SRAM_WE
 				 
@@ -59,7 +60,6 @@ ARCHITECTURE toplevel OF Xflash_Lite IS
 signal GPIO_TX:     std_logic;
 
 signal GPIO_SCLK:   std_logic;
-signal GPIO_MOSI:   std_logic;
 signal GPIO_MISO:   std_logic;
 signal GPIO_CS:     std_logic;
 
@@ -89,51 +89,52 @@ BEGIN
 		CE_FLASH <= MD_CE;
       OE_FLASH <= MD_OE;
 		FLASH_WE <= '0' when ASEL = '0' and MD_CE = '0' and MD_OE = '1' else '1' ; -- For MD-Dumper Write Mode
+		Mark3 <= 'Z';    -- Disable Master System mode
+      SOFT_RST     <= 'Z';
 		
-	-- Bankswitch Pin
+	-- Bankswitch Signal
 	
+	   GPIO_A18 <= '0' when TIMEE = '0' and MD_DQ(0) = '1' and MD_ADDR(3) ='1' else '1' when TIMEE = '0' and MD_ADDR(3) ='1' and MD_DQ(0) = '0';
+	   GPIO_A19 <= '0' when TIMEE = '0' and MD_DQ(1) = '1' and MD_ADDR(3) ='1' else '1' when TIMEE = '0' and MD_ADDR(3) ='1' and MD_DQ(1) = '0';
+      GPIO_A20 <= '0' when TIMEE = '0' and MD_DQ(2) = '1' and MD_ADDR(3) ='1' else '1' when TIMEE = '0' and MD_ADDR(3) ='1' and MD_DQ(2) = '0';
+      GPIO_A21 <= '0' when TIMEE = '0' and MD_DQ(3) = '1' and MD_ADDR(3) ='1' else '1' when TIMEE = '0' and MD_ADDR(3) ='1' and MD_DQ(3) = '0';	
 	
-	   GPIO_A18 <= '0' when TIMEE = '0' and MD_DQ(0) = '1' and MD_ADDR(4) ='1' else '1' when TIMEE = '0' and MD_ADDR(4) ='1' and MD_DQ(0) = '0';
-	   GPIO_A19 <= '0' when TIMEE = '0' and MD_DQ(1) = '1' and MD_ADDR(4) ='1' else '1' when TIMEE = '0' and MD_ADDR(4) ='1' and MD_DQ(1) = '0';
-      GPIO_A20 <= '0' when TIMEE = '0' and MD_DQ(2) = '1' and MD_ADDR(4) ='1' else '1' when TIMEE = '0' and MD_ADDR(4) ='1' and MD_DQ(2) = '0';
-      GPIO_A21 <= '0' when TIMEE = '0' and MD_DQ(3) = '1' and MD_ADDR(4) ='1' else '1' when TIMEE = '0' and MD_ADDR(4) ='1' and MD_DQ(3) = '0';		
-			
-	     
-		  FLASH_ADDR(18) <= not GPIO_A18 and not MD_ADDR(18); 
+   -- Bankswitch Process	
+		
+Bankswitch: process (GPIO_A18,GPIO_A19,GPIO_A20,GPIO_A21,MD_ADDR(18),MD_ADDR(19),MD_ADDR(20))
+  begin
+	 if GPIO_A18 = '0' and GPIO_A19 = '1' and GPIO_A20 = '1' and GPIO_A21 = '1' then -- Offset + 512 Ko : OK
+        FLASH_ADDR(18) <= not GPIO_A18 and not MD_ADDR(18); 
 		  FLASH_ADDR(19) <= ((not GPIO_A18 and not MD_ADDR(19) and MD_ADDR(18)) or ( not GPIO_A18 and MD_ADDR(19) and not MD_ADDR(18)));
 		  FLASH_ADDR(20) <= ((not GPIO_A18 and not MD_ADDR(20) and MD_ADDR(19) and MD_ADDR(18) ) or ( not GPIO_A18 and MD_ADDR(20) and not MD_ADDR(19) ) or ( not GPIO_A18 and MD_ADDR(20) and not MD_ADDR(18)) );  
 		  FLASH_ADDR(21) <= not GPIO_A18 and MD_ADDR(20) and MD_ADDR(19) and MD_ADDR(18);
-		
+     elsif GPIO_A18 = '1' and GPIO_A19 = '0' and GPIO_A20 = '1' and GPIO_A21 = '1' then -- Offset + 1024 Ko : A terminer
+	     FLASH_ADDR(18) <= '0';
+		  FLASH_ADDR(19) <= '1';
+		  FLASH_ADDR(21 DOWNTO 20) <= MD_ADDR(21 DOWNTO 20);
+     elsif GPIO_A19 = '0' and GPIO_A18 = '0' and GPIO_A20 = '1' and GPIO_A21 = '1'  then -- Offset + 1536 Ko : A terminer
+	     FLASH_ADDR(18) <= '1';
+		  FLASH_ADDR(19) <= '1';
+		  FLASH_ADDR(21 DOWNTO 20) <= MD_ADDR(21 DOWNTO 20);
+     elsif GPIO_A19 = '1' and GPIO_A18 = '1' and GPIO_A20 = '0' and GPIO_A21 = '1'  then -- Offset + 2048 Ko : A terminer
+	     FLASH_ADDR(18) <= MD_ADDR(18);
+		  FLASH_ADDR(19) <= MD_ADDR(18);
+		  FLASH_ADDR(20) <= '1';
+		  FLASH_ADDR(21) <= MD_ADDR(20);		  
+		else
+        FLASH_ADDR(21 DOWNTO 18) <= MD_ADDR(21 DOWNTO 18);
+      end if;
+    end process;
+	 	
+	-- X-flash Extra IO Mapping UART & SPI
 	
-	--FLASH_WE <= '1';
-	 
-  --RX <= (MD_CE NAND MD_CE) NAND MD_ADDR(20);
-  --CE_FLASH <= (MD_ADDR(20) NAND MD_ADDR(20)) NAND (MD_CE NAND MD_CE);
- -- SCLK <= LWR;     -- Disable SP?_CLK // SRAM_WE
-		 
-	--Extra Hardware
-	
-	Mark3 <= 'Z';    -- Disable Master System mode
-	--SOFT_RST <= '0' when GPIO_A18 <= '1' and TIMEE = '0' and ( MD_DQ(0) = '1' or MD_DQ(1) = '1' ) and MD_ADDR(4) ='1'  else 'Z' when TIMEE = '1'   ; -- Pulse reset when bankswitch
-	
---	CE_SPI <= 'Z';   -- Disable SP? Slave
-   SOFT_RST     <= 'Z';
-	--SCLK <= '1';
-	
-	-- X-flash Extra IO Mapping 
-	
-	GPIO_TX <= '0' when TIMEE = '0' and MD_DQ(0) = '1' and MD_ADDR(5) ='1' else '1'  when TIMEE = '0' and MD_ADDR(5) ='1' and MD_DQ(0) = '0'  ; -- TX mapped at 0xA13040	
-	--TX <= '1' when GPIO_TX <= '0' else '0' when GPIO_TX <= '1'; 
-	 TX <= MD_ADDR(18) and not MD_CE  and not MD_OE ;
-	
-	--FLASH_ADDR(18) <= '1' when rising_edge(GPIO_TX) and MD_DQ(0) = '1' and MD_ADDR(20) ='1' ;
-	
- 
-	 -- Register to OUT
-	 
-	 --TX <= GPIO_MOSI;
-	 --SCLK <= GPIO_SCLK;
-	
-	
-																	
+	GPIO_CS <= '0' when TIMEE = '0' and MD_DQ(0) = '1' and MD_ADDR(4) ='1' else '1'  when TIMEE = '0' and MD_ADDR(4) ='1' and MD_DQ(0) = '0'  ;
+	GPIO_TX <= '0' when TIMEE = '0' and MD_DQ(0) = '1' and MD_ADDR(5) ='1' else '1'  when TIMEE = '0' and MD_ADDR(5) ='1' and MD_DQ(0) = '0'  ; -- TX/MOSI mapped at 0xA13040
+   GPIO_SCLK <= '0' when TIMEE = '0' and MD_DQ(0) = '1' and MD_ADDR(6) ='1' else '1'  when TIMEE = '0' and MD_ADDR(6) ='1' and MD_DQ(0) = '0'  ;
+  		
+ 	TX <= '1' when GPIO_TX <= '0' else '0' when GPIO_TX <= '1';
+	SCLK <= '1' when GPIO_SCLK <= '0' else '0' when GPIO_SCLK <= '1';
+   CE_SPI <= '1' when GPIO_CS <= '0' else '0' when GPIO_CS <= '1';
+	--MD_DQ(1) <= MISO when TIMEE = '0' and MD_DQ(0) = '1' and MD_ADDR(7) ='1';
+																		
 END toplevel;

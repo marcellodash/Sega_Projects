@@ -14,7 +14,7 @@
 #include "./FatFs/diskio.h"
 #include "./FatFs/pff.h"
 
-#define SPI_REG_ADDR 0xA13010
+#define SPI_REG_ADDR 0xA13040
 
 /*--------------------------------------------------------------------------
    SPI Generic Functions
@@ -32,32 +32,32 @@ void RAM_Wait(unsigned char delay){
 CODE_IN_WRAM
 void RAM_SetCS(void)
 {
-    asm("move.b #1,0xA13010");
+    asm("move.b #1,0xA13020");
 }
 CODE_IN_WRAM
 void RAM_ClearCS(void)
 {
-    asm("move.b #0,0xA13010");
+    asm("move.b #0,0xA13020");
 }
 CODE_IN_WRAM
 void RAM_SetSCK(void)
 {
-    asm("move.b #1,0xA13020");
+    asm("move.b #1,0xA13080");
 }
 CODE_IN_WRAM
 void RAM_ClearSCK(void)
 {
-    asm("move.b #0,0xA13020");
+    asm("move.b #0,0xA13080");
 }
 CODE_IN_WRAM
 void RAM_SetMOSI(void)
 {
-    asm("move.b #1,0xA13080");
+    asm("move.b #1,0xA13040");
 }
 CODE_IN_WRAM
 void RAM_ClearMOSI(void)
 {
-    asm("move.b #0,0xA13080");
+    asm("move.b #0,0xA13040");
 }
 
 
